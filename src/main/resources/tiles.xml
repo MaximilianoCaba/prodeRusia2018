@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE tiles-definitions PUBLIC "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN" "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+<tiles-definitions>
+
+    <!-- TEMPLATE -->
+    <definition name="layout.basic" template="/WEB-INF/layout/basic.jsp">
+        <put-attribute name="title" value="Snoopooling" />
+        <put-attribute name="headerStyles" value="/WEB-INF/jsp/headerStyles.jsp"/>
+        <put-attribute name="header" value="/WEB-INF/jsp/header.jsp" />
+        <put-attribute name="body" value=""  />
+        <put-attribute name="footerJavascript" value="/WEB-INF/jsp/footerJavascript.jsp"  />
+    </definition>
+
+    <definition name="layout.error" template="/WEB-INF/layout/error.jsp">
+        <put-attribute name="title" value="Snoopooling" />
+        <put-attribute name="headerStyles" value="/WEB-INF/jsp/headerStyles.jsp"/>
+        <put-attribute name="header" value="/WEB-INF/jsp/header.jsp" />
+        <put-attribute name="body" value=""  />
+        <put-attribute name="footerJavascript" value="/WEB-INF/jsp/footerJavascript.jsp"  />
+    </definition>
+    <!-- TEMPLATE -->
+
+    <!-- PAGES -->
+
+    <definition name="site.home" extends="layout.basic">
+        <put-attribute name="body" value="/WEB-INF/jsp/home.jsp" />
+    </definition>
+
+    <definition name="site.myRound" extends="layout.basic">
+        <put-attribute name="body" value="/WEB-INF/jsp/myRound.jsp" />
+    </definition>
+
+    <!-- PAGES -->
+
+    <!-- ERROR PAGES -->
+    <definition name="site.403" extends="layout.error">
+        <put-attribute name="body" value="/WEB-INF/jsp/error/403.jsp" />
+    </definition>
+
+    <definition name="site.404" extends="layout.error">
+        <put-attribute name="body" value="/WEB-INF/jsp/error/404.jsp" />
+    </definition>
+
+    <definition name="site.error" extends="layout.error">
+        <put-attribute name="body" value="/WEB-INF/jsp/error/error.jsp" />
+    </definition>
+    <!-- ERROR PAGES -->
+
+</tiles-definitions>

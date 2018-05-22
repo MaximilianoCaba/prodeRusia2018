@@ -1,12 +1,8 @@
-snoopooling.service = (function () {
+prode.service = (function () {
 
 
-    function uriTravel() {
-        return 'travel/'
-    }
-
-    function uriPerson() {
-        return 'person/'
+    function uriFixture() {
+        return 'fixture/'
     }
 
     function uriApi() {
@@ -14,9 +10,9 @@ snoopooling.service = (function () {
     }
 
     return {
-        uriTravel: uriTravel,
-        uriApi: uriApi,
-        uriPerson: uriPerson
+        uriFixture: uriFixture,
+        uriApi: uriApi
+
     }
 
 })();

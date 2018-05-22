@@ -4,7 +4,7 @@
 
     <!-- TEMPLATE -->
     <definition name="layout.basic" template="/WEB-INF/layout/basic.jsp">
-        <put-attribute name="title" value="Snoopooling" />
+        <put-attribute name="title" value="Prode Rusia 2018" />
         <put-attribute name="headerStyles" value="/WEB-INF/jsp/headerStyles.jsp"/>
         <put-attribute name="header" value="/WEB-INF/jsp/header.jsp" />
         <put-attribute name="body" value=""  />
@@ -12,7 +12,7 @@
     </definition>
 
     <definition name="layout.error" template="/WEB-INF/layout/error.jsp">
-        <put-attribute name="title" value="Snoopooling" />
+        <put-attribute name="title" value="Prode Rusia 2018" />
         <put-attribute name="headerStyles" value="/WEB-INF/jsp/headerStyles.jsp"/>
         <put-attribute name="header" value="/WEB-INF/jsp/header.jsp" />
         <put-attribute name="body" value=""  />

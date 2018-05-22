@@ -1,6 +1,7 @@
 package com.prode.controller.rest;
 
 
+import com.prode.request.UserFixtureRound;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,9 +14,11 @@ import javax.servlet.http.HttpServletRequest;
 @RestController
 public class ResultController {
 
-    @RequestMapping(value ="/api/saveMyRound", method = RequestMethod.POST)
+    @RequestMapping(value = "/api/fixture", method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.CREATED)
-    public String create(HttpServletRequest request, Authentication authentication){
+    public String create(UserFixtureRound userFixtureRound, Authentication authentication) {
+        System.out.println(userFixtureRound);
+
         return "Ok";
     }
 

@@ -6,4 +6,9 @@
 
 <script type="text/javascript" src="<c:url value="/"/>js/app.js"></script>
 <script type="text/javascript" src="<c:url value="/"/>js/ui/ui.js"></script>
+<script type="text/javascript" src="<c:url value="/"/>js/service/service.js"></script>
+<script type="text/javascript" src="<c:url value="/"/>js/service/prode.js"></script>
+
+<script type="text/javascript" src="<c:url value="/"/>js/ui/prode/form/form.js"></script>
+<script type="text/javascript" src="<c:url value="/"/>js/ui/prode/form/fixEdit.js"></script>
 

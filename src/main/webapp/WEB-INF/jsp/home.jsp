@@ -5,6 +5,8 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 
+<p class="text-center">Tabla General</p>
+
 <c:forEach items="${results.generalResult}" var="user">
 
     <div id="travel-body" data-id=${user.userName} class="container">
@@ -22,7 +24,7 @@
                         <div class="info">
                             <h2 class="hour">
                                 <div class="title-list">
-                                    ${user.userName}
+                                        ${user.userName}
                                 </div>
                             </h2>
                         </div>
@@ -33,5 +35,38 @@
     </div>
 </c:forEach>
 
+
+<c:forEach items="${results.roundResult}" var="rounds">
+
+    <p class="text-center">Ronda ${rounds.key}</p>
+
+    <c:forEach items="${rounds.value}" var="user">
+        <div id="travel-body" data-id=${user.userName} class="container">
+            <div class="row">
+                <div class="col-xs-12 col-md-offset-2 col-md-8">
+                    <ul class="event-list">
+
+                        <li>
+                            <time>
+                            <span class="day">
+                                    ${user.result}
+                            </span>
+
+                            </time>
+                            <div class="info">
+                                <h2 class="hour">
+                                    <div class="title-list">
+                                            ${user.userName}
+                                    </div>
+                                </h2>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </c:forEach>
+
+</c:forEach>
 
 

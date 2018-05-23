@@ -46,9 +46,9 @@ public class OAuthSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/image/**")
                 .antMatchers("/js/**")
                 .antMatchers("/v2/api-docs/**",
-                    "/configuration/ui",
-                    "/swagger-resources",
-                    "/configuration/security",
+                    "/configuration/ui/**",
+                    "/swagger-resources/**",
+                    "/configuration/security/**",
                     "/swagger-ui.html/**",
                     "/webjars/**");
 

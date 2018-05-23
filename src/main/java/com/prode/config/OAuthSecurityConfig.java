@@ -39,12 +39,19 @@ public class OAuthSecurityConfig extends WebSecurityConfigurerAdapter {
     }
 
     @Override
-    public void configure(WebSecurity web) throws Exception {
+    public void configure(WebSecurity web) {
         web.ignoring()
                 .antMatchers("/css/**")
                 .antMatchers("/template/**")
                 .antMatchers("/image/**")
-                .antMatchers("/js/**");
+                .antMatchers("/js/**")
+                .antMatchers("/v2/api-docs/**",
+                    "/configuration/ui",
+                    "/swagger-resources",
+                    "/configuration/security",
+                    "/swagger-ui.html/**",
+                    "/webjars/**");
+
 
     }
 
@@ -72,6 +79,9 @@ public class OAuthSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/403").permitAll()
                 .antMatchers("/404").permitAll()
                 .antMatchers("/api/**").permitAll()
+                .antMatchers("/v2/api-docs/**").permitAll()
+                .antMatchers("/swagger-ui.html/**").permitAll()
+
                 .anyRequest().authenticated();
 
 

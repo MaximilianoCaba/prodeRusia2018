@@ -29,7 +29,7 @@ public class User implements Serializable {
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
     @JsonIgnore
-    private Set<UserMatch> myUserMatchs;
+    private Set<MatchUser> myMatchUsers;
 
 
     public User() {
@@ -89,11 +89,11 @@ public class User implements Serializable {
         this.roleAdmin = roleAdmin;
     }
 
-    public Set<UserMatch> getMyUserMatchs() {
-        return myUserMatchs;
+    public Set<MatchUser> getMyMatchUsers() {
+        return myMatchUsers;
     }
 
-    public void setMyUserMatchs(Set<UserMatch> myUserMatchs) {
-        this.myUserMatchs = myUserMatchs;
+    public void setMyMatchUsers(Set<MatchUser> myMatchUsers) {
+        this.myMatchUsers = myMatchUsers;
     }
 }

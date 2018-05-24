@@ -3,8 +3,8 @@ package com.prode.entity;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "user_match")
-public class UserMatch {
+@Table(name = "match_user")
+public class MatchUser {
 
     @Id
     @Column(name ="ID")
@@ -30,17 +30,7 @@ public class UserMatch {
     @Column(name = "PENALTY_GOAL_AWAY")
     private Integer penaltyGoalAway;
 
-    public UserMatch() {
-    }
-
-    public UserMatch(Long id, Match match, User user, Integer goalHome, Integer goalAway, Integer penaltyGoalHome, Integer penaltyGoalAway) {
-        this.id = id;
-        this.match = match;
-        this.user = user;
-        this.goalHome = goalHome;
-        this.goalAway = goalAway;
-        this.penaltyGoalHome = penaltyGoalHome;
-        this.penaltyGoalAway = penaltyGoalAway;
+    public MatchUser() {
     }
 
     public Long getId() {

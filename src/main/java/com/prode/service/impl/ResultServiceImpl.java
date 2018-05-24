@@ -2,10 +2,11 @@ package com.prode.service.impl;
 
 import com.prode.Utils.MatchUtility;
 import com.prode.entity.Match;
+import com.prode.entity.MatchUser;
 import com.prode.entity.User;
-import com.prode.entity.UserMatch;
 import com.prode.repository.MatchRepository;
 import com.prode.repository.UserMatchRepository;
+import com.prode.repository.UserRepository;
 import com.prode.response.myRound.FixtureRound;
 import com.prode.response.home.Result;
 import com.prode.response.myRound.OneMatch;
@@ -16,6 +17,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 
 
@@ -28,12 +30,17 @@ public class ResultServiceImpl implements ResultService {
     @Autowired
     private MatchRepository matchRepository;
 
+    @Autowired
+    private UserRepository userRepository;
+
     private static Integer roundsWorldCup = 8;
 
     @Override
     public Result getResultRound() {
 
-        List<UserMatch> userMatches = userMatchRepository.findAll();
+        //TODO devolver una lista de usuarios vacios y concatenarle el resultado
+
+        List<MatchUser> matchUsers = userMatchRepository.findAll();
 
         Map<String, Integer> resultAllRound = new HashMap<>();
 
@@ -44,11 +51,11 @@ public class ResultServiceImpl implements ResultService {
 
             int finalRound = round;
 
-            List<UserMatch> userMatchesRound = userMatches
+            List<MatchUser> matchesRoundUser = matchUsers
                     .stream()
                     .filter(userMatch -> userMatch.getMatch().getRound() == finalRound).collect(Collectors.toList());
 
-            Map<String, Integer> resultRound = this.getResultRound(userMatchesRound);
+            Map<String, Integer> resultRound = this.getResultRound(matchesRoundUser);
 
             resultAllRound = this.getResultAllRound(resultAllRound, resultRound);
 
@@ -66,26 +73,26 @@ public class ResultServiceImpl implements ResultService {
         return result;
     }
 
-    private Map<String, Integer> getResultRound(List<UserMatch> userMatches) {
+    private Map<String, Integer> getResultRound(List<MatchUser> matchUsers) {
 
         Map<String, Integer> resultados = new HashMap<>();
-        for (UserMatch userMatch : userMatches) {
+        for (MatchUser matchUser : matchUsers) {
 
-            Boolean ifGoalHome = userMatch.getMatch().getGoalHome() != null;
-            Boolean ifGoalAway = userMatch.getMatch().getGoalAway() != null;
+            Boolean ifGoalHome = matchUser.getMatch().getGoalHome() != null;
+            Boolean ifGoalAway = matchUser.getMatch().getGoalAway() != null;
 
             if (ifGoalHome && ifGoalAway) {
 
-                Integer points = resultados.get(userMatch.getUser().getName());
+                Integer points = resultados.get(matchUser.getUser().getName());
 
                 if (points == null)
                     points = 0;
 
-                points = points + MatchUtility.generatePointMatch(userMatch);
+                points = points + MatchUtility.generatePointMatch(matchUser);
 
-                resultados.put(userMatch.getUser().getName(), points);
+                resultados.put(matchUser.getUser().getName(), points);
             } else
-                resultados.put(userMatch.getUser().getName(), 0);
+                resultados.put(matchUser.getUser().getName(), 0);
         }
         return resultados;
 
@@ -107,12 +114,24 @@ public class ResultServiceImpl implements ResultService {
 
     private List<UserResult> mapToUserResult(Map<String, Integer> resultRound) {
 
+        Map<String, User> userMap = userRepository.findAll()
+                .stream()
+                .collect(Collectors.toMap(User::getName, Function.identity()));
+
         List<UserResult> userResultList = new ArrayList<>();
 
-        resultRound.forEach((key, value) -> {
+        userMap.forEach((key, user) -> {
+
+            Integer point = resultRound.get(key);
             UserResult userResult = new UserResult();
-            userResult.setUserName(key);
-            userResult.setResult(value);
+
+            if(point == null)
+                userResult.setResult(0);
+            else
+                userResult.setResult(point);
+
+            userResult.setUserName(user.getName());
+            userResult.setUserAvatar(user.getAvatar());
 
             userResultList.add(userResult);
 
@@ -129,7 +148,7 @@ public class ResultServiceImpl implements ResultService {
     public FixtureRound getFixture(User user) {
 
         List<Match> allMatches = matchRepository.findAll();
-        List<UserMatch> allUserMatchesList = userMatchRepository.findAllByUser(user);
+        List<MatchUser> allMatchesListUser = userMatchRepository.findAllByUser(user);
         FixtureRound fixtureRound = new FixtureRound();
 
         for (int round = 1; round < roundsWorldCup; ++round) {
@@ -142,31 +161,31 @@ public class ResultServiceImpl implements ResultService {
                     .filter(match -> match.getRound() == finalRound)
                     .collect(Collectors.toList());
 
-            List<UserMatch> roundUserMatches = allUserMatchesList.stream()
+            List<MatchUser> roundMatchUsers = allMatchesListUser.stream()
                     .filter(match -> match.getMatch().getRound() == finalRound)
                     .collect(Collectors.toList());
 
             roundMatches.forEach(oneMatch -> {
 
-                UserMatch userMatches = roundUserMatches.stream()
+                MatchUser matchesUser = roundMatchUsers.stream()
                         .filter(match -> match.getMatch().getId().equals(oneMatch.getId()))
                         .findFirst()
                         .orElse(null);
 
                 OneMatch oneMatchResult = new OneMatch();
                 oneMatchResult.setMatch(oneMatch);
-                if (userMatches == null){
-                    userMatches = new UserMatch();
+                if (matchesUser == null){
+                    matchesUser = new MatchUser();
                     Long userMatchId = Long.valueOf(String.valueOf(user.getId()).concat(String.valueOf(oneMatch.getId())));
-                    userMatches.setId(userMatchId);
-                    userMatches.setMatch(oneMatch);
-                    userMatches.setUser(user);
+                    matchesUser.setId(userMatchId);
+                    matchesUser.setMatch(oneMatch);
+                    matchesUser.setUser(user);
                 }
-                oneMatchResult.setUserMatch(userMatches);
+                oneMatchResult.setMatchUser(matchesUser);
                 oneMatchList.add(oneMatchResult);
 
 
-                oneMatchResult.setUserMatch(userMatches);
+                oneMatchResult.setMatchUser(matchesUser);
 
             });
 

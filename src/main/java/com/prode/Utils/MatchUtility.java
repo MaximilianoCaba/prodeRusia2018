@@ -1,6 +1,6 @@
 package com.prode.Utils;
 
-import com.prode.entity.UserMatch;
+import com.prode.entity.MatchUser;
 
 public class MatchUtility {
 
@@ -13,17 +13,17 @@ public class MatchUtility {
     private final static String WIN_AWAY = "AWAY";
     private final static String DRAW = "DRAW";
 
-    public static Integer generatePointMatch(UserMatch userMatch) {
+    public static Integer generatePointMatch(MatchUser matchUser) {
         Integer points = 0;
 
-        Integer myGoalhome = userMatch.getGoalHome();
-        Integer myGoalAway = userMatch.getGoalAway();
-        Integer goalHome = userMatch.getMatch().getGoalHome();
-        Integer goalAway = userMatch.getMatch().getGoalAway();
-        Integer goalHomePenalty = userMatch.getPenaltyGoalHome();
-        Integer goalAwayPenalty = userMatch.getPenaltyGoalAway();
-        Integer myGoalHomePenalty = userMatch.getMatch().getPenaltyGoalHome();
-        Integer myGoalAwayPenalty = userMatch.getMatch().getPenaltyGoalAway();
+        Integer myGoalhome = matchUser.getGoalHome();
+        Integer myGoalAway = matchUser.getGoalAway();
+        Integer goalHome = matchUser.getMatch().getGoalHome();
+        Integer goalAway = matchUser.getMatch().getGoalAway();
+        Integer goalHomePenalty = matchUser.getPenaltyGoalHome();
+        Integer goalAwayPenalty = matchUser.getPenaltyGoalAway();
+        Integer myGoalHomePenalty = matchUser.getMatch().getPenaltyGoalHome();
+        Integer myGoalAwayPenalty = matchUser.getMatch().getPenaltyGoalAway();
 
 
         if (goalHomePenalty != null && goalAwayPenalty != null) {

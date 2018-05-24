@@ -1,16 +1,16 @@
 package com.prode.response.myRound;
 
 import com.prode.entity.Match;
-import com.prode.entity.UserMatch;
+import com.prode.entity.MatchUser;
 
 public class OneMatch {
 
     private Match match;
-    private UserMatch userMatch;
+    private MatchUser matchUser;
 
-    public OneMatch(Match match, UserMatch userMatch) {
+    public OneMatch(Match match, MatchUser matchUser) {
         this.match = match;
-        this.userMatch = userMatch;
+        this.matchUser = matchUser;
     }
 
     public OneMatch() {
@@ -24,11 +24,11 @@ public class OneMatch {
         this.match = match;
     }
 
-    public UserMatch getUserMatch() {
-        return userMatch;
+    public MatchUser getMatchUser() {
+        return matchUser;
     }
 
-    public void setUserMatch(UserMatch userMatch) {
-        this.userMatch = userMatch;
+    public void setMatchUser(MatchUser matchUser) {
+        this.matchUser = matchUser;
     }
 }

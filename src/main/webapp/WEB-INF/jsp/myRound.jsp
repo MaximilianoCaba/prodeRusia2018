@@ -31,7 +31,7 @@
 
                                         <ul class="nav nav-tabs text-center" role="tablist">
                                             <c:forEach items="${results.rounds}" var="rounds">
-                                                <li role="presentation" class="$(${rounds.round == 1} ? 'active' : '')">
+                                                <li role="presentation" <c:if test="${rounds.round == 1}"><c:out value="class='active'"/></c:if> >
                                                     <a
                                                             href="#ronda${rounds.round}" aria-controls="ronda1"
                                                             role="tab" data-toggle="tab">Ronda ${rounds.round}</a>
@@ -44,9 +44,7 @@
                                             <c:forEach items="${results.rounds}" var="rounds">
 
 
-                                                <div role="tabpanel"
-                                                     class="tab-pane $(${rounds.round == 1} ? 'active' : '')"
-                                                     id="ronda${rounds.round}">
+                                                <div role="tabpanel"<c:if test="${rounds.round == 1}"><c:out value="class='tab-pane active'"/></c:if> class="tab-pane" id="ronda${rounds.round}">
 
                                                     <div class="contenido_tab">
                                                         <div class="titulo">Ronda ${rounds.round}</div>
@@ -65,7 +63,7 @@
 
 
                                                                             <div class="celda">
-                                                                                <input <c:if test="${! empty round.match.goalHome}"><c:out value="disabled='disabled'"/></c:if> value="${round.userMatch.goalHome}" type="number"/>
+                                                                                <input <c:if test="${! empty round.match.goalHome}"><c:out value="disabled='disabled'"/></c:if> value="${round.matchUser.goalHome}" type="number"/>
                                                                             </div>
 
                                                                             <div class="celda">
@@ -73,7 +71,7 @@
                                                                             </div>
 
                                                                             <div class="celda">
-                                                                                <input <c:if test="${! empty round.match.goalAway}"><c:out value="disabled='disabled'"/></c:if> value="${round.userMatch.goalAway}" type="number"/>
+                                                                                <input <c:if test="${! empty round.match.goalAway}"><c:out value="disabled='disabled'"/></c:if> value="${round.matchUser.goalAway}" type="number"/>
                                                                             </div>
 
                                                                             <div class="celda">${round.match.teamAway.name}</div>
@@ -86,11 +84,13 @@
                                                                                 <div class="fila penales">
                                                                                     <div class="celda"></div>
                                                                                     <div class="celda"></div>
-                                                                                    <div class="celda"><input
-                                                                                            type="number"/></div>
+
+                                                                                    <input <c:if test="${! empty round.match.penaltyGoalHome}"><c:out value="disabled='disabled'"/></c:if> value="${round.matchUser.penaltyGoalHome}" type="number"/>
+
                                                                                     <div class="celda">Penales</div>
-                                                                                    <div class="celda"><input
-                                                                                            type="number"/></div>
+
+                                                                                    <input <c:if test="${! empty round.match.penaltyGoalAway}"><c:out value="disabled='disabled'"/></c:if> value="${round.matchUser.penaltyGoalAway}" type="number"/>
+
                                                                                     <div class="celda"></div>
                                                                                     <div class="celda"></div>
                                                                                 </div>
@@ -100,7 +100,6 @@
 
                                                                     </div>
 
-                                                                    <div class="text-center resultado_partido">Info: <b>22-06-2018 14:00 hs Stadium Rusia</b></div>
 
 
                                                                     <c:choose>
@@ -111,6 +110,9 @@
                                                                                     - ${round.match.teamAway.name} ${round.match.goalAway}</b>
                                                                             </div>
                                                                         </c:when>
+                                                                        <c:otherwise>
+                                                                            <div class="text-center resultado_partido">Info: <b>22-06-2018 14:00 hs Stadium Rusia</b></div>
+                                                                        </c:otherwise>
                                                                     </c:choose>
 
                                                                 </li>

@@ -3,10 +3,11 @@ package com.prode.entity;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
+import java.util.Date;
 import java.util.Set;
 
 @Entity
-@Table(name = "match_game")
+@Table(name = "match")
 public class Match {
 
     @Id
@@ -37,21 +38,18 @@ public class Match {
     @Column(name = "PENALTY_GOAL_AWAY")
     private Integer penaltyGoalAway;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "")
+    @Column(name = "DATE")
+    private Date date;
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "ID_STATE")
+    private MatchState matchState;
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "match")
     @JsonIgnore
-    private Set<UserMatch> matches;
+    private Set<MatchUser> matches;
 
     public Match() {
-    }
-
-    public Match(Integer round, Team teamHome, Team teamAway, Integer goalHome, Integer goalAway, Integer penaltyGoalHome, Integer penaltyGoalAway) {
-        this.round = round;
-        this.teamHome = teamHome;
-        this.teamAway = teamAway;
-        this.goalHome = goalHome;
-        this.goalAway = goalAway;
-        this.penaltyGoalHome = penaltyGoalHome;
-        this.penaltyGoalAway = penaltyGoalAway;
     }
 
     public Long getId() {
@@ -118,11 +116,27 @@ public class Match {
         this.penaltyGoalAway = penaltyGoalAway;
     }
 
-    public Set<UserMatch> getMatches() {
+    public Set<MatchUser> getMatches() {
         return matches;
     }
 
-    public void setMatches(Set<UserMatch> matches) {
+    public void setMatches(Set<MatchUser> matches) {
         this.matches = matches;
+    }
+
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
+    }
+
+    public MatchState getMatchState() {
+        return matchState;
+    }
+
+    public void setMatchState(MatchState matchState) {
+        this.matchState = matchState;
     }
 }

@@ -39,6 +39,15 @@ body{
 	background-size: cover;
 	color:#fff;
 }
+
+.slide-home.bienvenida{
+	position:absolute;
+	left:0px;
+	top:0px;
+	right:0px;
+	bottom:0px;
+}
+
 .slide-home .texto-central .linea1,
 .slide-home .texto-central .linea2{
 	font-family: 'Russo One', sans-serif;

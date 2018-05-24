@@ -42,8 +42,8 @@ public class OAuthSecurityConfig extends WebSecurityConfigurerAdapter {
     public void configure(WebSecurity web) {
         web.ignoring()
                 .antMatchers("/css/**")
-                .antMatchers("/template/**")
-                .antMatchers("/image/**")
+                .antMatchers("/img/**")
+                .antMatchers("/fonts/**")
                 .antMatchers("/js/**")
                 .antMatchers("/v2/api-docs/**",
                     "/configuration/ui/**",

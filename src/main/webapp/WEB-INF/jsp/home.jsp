@@ -4,69 +4,99 @@
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
-
-<p class="text-center">Tabla General</p>
-
-<c:forEach items="${results.generalResult}" var="user">
-
-    <div id="travel-body" data-id=${user.userName} class="container">
-        <div class="row">
-            <div class="col-xs-12 col-md-offset-2 col-md-8">
-                <ul class="event-list">
-
-                    <li>
-                        <time>
-                            <span class="day">
-                                    ${user.result}
-                            </span>
-
-                        </time>
-                        <div class="info">
-                            <h2 class="hour">
-                                <div class="title-list">
-                                        ${user.userName}
+<div id="principal">
+    <div class="slide-home" role="home">
+        <div class="tabla_contenedor">
+            <div class="fila titulo">
+                <div class="celda">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div class="texto"><i class="glyphicon glyphicon-list-alt hidden-xs"></i><br/>Tabla
+                                    General
                                 </div>
-                            </h2>
-                        </div>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </div>
-</c:forEach>
-
-
-<c:forEach items="${results.roundResult}" var="rounds">
-
-    <p class="text-center">Ronda ${rounds.key}</p>
-
-    <c:forEach items="${rounds.value}" var="user">
-        <div id="travel-body" data-id=${user.userName} class="container">
-            <div class="row">
-                <div class="col-xs-12 col-md-offset-2 col-md-8">
-                    <ul class="event-list">
-
-                        <li>
-                            <time>
-                            <span class="day">
-                                    ${user.result}
-                            </span>
-
-                            </time>
-                            <div class="info">
-                                <h2 class="hour">
-                                    <div class="title-list">
-                                            ${user.userName}
-                                    </div>
-                                </h2>
                             </div>
-                        </li>
-                    </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="fila contenido">
+                <div class="celda">
+                    <div class="contenedor_capa">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-sm-8 col-sm-offset-2">
+                                    <div>
+
+
+                                        <ul class="nav nav-tabs text-center" role="tablist">
+
+                                            <li role="presentation" class="active"><a href="#ronda0"
+                                                                                      aria-controls="ronda1" role="tab"
+                                                                                      data-toggle="tab">Tabla general</a>
+                                            </li>
+                                            <c:forEach items="${results.roundResult}" var="rounds">
+                                                <li role="presentation"><a href="#ronda${rounds.key}"
+                                                                           aria-controls="ronda1" role="tab"
+                                                                           data-toggle="tab">Ronda ${rounds.key}</a>
+                                                </li>
+                                            </c:forEach>
+                                        </ul>
+
+                                        <div class="tab-content">
+
+                                            <div role="tabpanel" class="tab-pane active" id="ronda0">
+                                                <div class="contenido_tab">
+                                                    <div class="titulo">Tabla general</div>
+
+                                                    <c:forEach items="${results.generalResult}" var="user">
+
+                                                        <li>
+                                                            <div class="tabla_contenedor">
+                                                                <div class="celda imagen"><img
+                                                                        src="https://lh4.googleusercontent.com/-XPN0I-nYmJ4/AAAAAAAAAAI/AAAAAAAAAQs/q7BnurV_LXM/photo.jpg"
+                                                                        class="img-avatar"></div>
+                                                                <div class="celda nombre">${user.userName}</div>
+                                                                <div class="celda numero">${user.result}</div>
+                                                            </div>
+                                                        </li>
+
+                                                    </c:forEach>
+                                                </div>
+                                            </div>
+
+                                            <c:forEach items="${results.roundResult}" var="rounds">
+
+                                                <div role="tabpanel" class="tab-pane" id="ronda${rounds.key}">
+                                                    <div class="contenido_tab">
+                                                        <div class="titulo">Ronda ${rounds.key}</div>
+                                                        <c:forEach items="${rounds.value}" var="user">
+                                                            <li>
+                                                                <div class="tabla_contenedor">
+                                                                    <div class="celda imagen"><img
+                                                                        src="https://lh4.googleusercontent.com/-XPN0I-nYmJ4/AAAAAAAAAAI/AAAAAAAAAQs/q7BnurV_LXM/photo.jpg"
+                                                                        class="img-avatar"></div>
+                                                                <div class="celda nombre">${user.userName}</div>
+                                                                <div class="celda numero">${user.result}</div>
+                                                            </div>
+                                                            </li>
+                                                        </c:forEach>
+                                                    </div>
+                                                </div>
+                                            </c:forEach>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-    </c:forEach>
+    </div>
+</div>
 
-</c:forEach>
+
 
 

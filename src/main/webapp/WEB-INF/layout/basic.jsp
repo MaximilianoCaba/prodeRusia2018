@@ -17,6 +17,20 @@
     <c:choose>
         <c:when test="${user==null}">
 
+            <nav class="navbar navbar-default navbar-fixed-top">
+                <div class="container">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a class="navbar-brand" href="#"><img src="<c:url value="/"/>img/logo5.png" height="50" /></a>
+                    </div>
+                </div>
+            </nav>
+
             <div class="container">
                 <div class="jumbotron">
                     <div class="text-center"><i class="fa fa-5x fa-frown-o" style="color:#d97323;"></i></div>
@@ -46,28 +60,25 @@
 <sec:authorize access="isAnonymous()">
     <body class="bodyhome">
 
-    <style type="text/css">
-        .bodyhome {
-            background-image: url('<c:url value="/"/>image/brazil_soccer_wcup_argentina_iran-38.jpg');
-            background-repeat: no-repeat;
-            margin-top: 150px;
-        }
-    </style>
-
-    <div class="container" style="background: lightgrey; width: 60%">
-        <h1 class="text-center" style="font-family: initial;"><spring:message code="basicLayout.welcome"/>
-            <p></p>
-        </h1>
-        <p class="text-center">
-        <form action="<c:url value="/"/>google/login" method="GET">
-            <div class="login-box-btm text-center">
-                <button class="loginBtn loginBtn--google">
-                    <spring:message code="basicLayout.login-button"/>
-                </button>
+    <div id="principal">
+        <div class="container-fluid slide-home bienvenida" role="home">
+            <div class="tabla_contenedor home">
+                <div class="celda">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-sm-12 text-center texto-central">
+                                <div><img src="<c:url value="/"/>img/logo_russia_2018.png"/></div>
+                                <div class="linea1">Bienvenido al prode de</div>
+                                <div class="linea2">Snoop Consulting</div>
+                                <a href="<c:url value="/"/>google/login" class="btn btn-lg btn-iniciar">Iniciar sesi&oacute;n</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-        </form>
-        </p>
+        </div>
     </div>
+
 
     </body>
 

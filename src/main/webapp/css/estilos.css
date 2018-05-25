@@ -84,6 +84,11 @@ body{
 .tabla_contenedor{
 	display:table;width:100%;height:100%;table-layout: fixed;
 }
+
+.lista_usuarios {
+	list-style:none
+}
+
 .tabla_contenedor .fila{
 	display:table-row;vertical-align:middle;text-align:center;
 }

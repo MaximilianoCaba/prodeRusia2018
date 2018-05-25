@@ -27,64 +27,45 @@
                             <div class="row">
                                 <div class="col-sm-8 col-sm-offset-2">
                                     <div>
-
-
                                         <ul class="nav nav-tabs text-center" role="tablist">
-
-                                            <li role="presentation" class="active"><a href="#ronda0"
-                                                                                      aria-controls="ronda1" role="tab"
-                                                                                      data-toggle="tab">Tabla general</a>
-                                            </li>
+                                            <li role="presentation" class="active"><a href="#ronda0" aria-controls="ronda1" role="tab" data-toggle="tab">Tabla general</a></li>
                                             <c:forEach items="${results.roundResult}" var="rounds">
-                                                <li role="presentation"><a href="#ronda${rounds.key}"
-                                                                           aria-controls="ronda1" role="tab"
-                                                                           data-toggle="tab">Ronda ${rounds.key}</a>
-                                                </li>
+                                                <li role="presentation"><a href="#ronda${rounds.key}" aria-controls="ronda1" role="tab" data-toggle="tab">Ronda ${rounds.key}</a></li>
                                             </c:forEach>
                                         </ul>
 
                                         <div class="tab-content">
-
                                             <div role="tabpanel" class="tab-pane active" id="ronda0">
                                                 <div class="contenido_tab">
                                                     <div class="titulo">Tabla general</div>
-
                                                     <c:forEach items="${results.generalResult}" var="user">
-
-                                                        <li>
+                                                        <li class="lista_usuarios">
                                                             <div class="tabla_contenedor">
-                                                                <div class="celda imagen"><img
-                                                                        src="https://lh4.googleusercontent.com/-XPN0I-nYmJ4/AAAAAAAAAAI/AAAAAAAAAQs/q7BnurV_LXM/photo.jpg"
-                                                                        class="img-avatar"></div>
+                                                                <div class="celda imagen"><img src="${user.userAvatar}" class="img-avatar"></div>
                                                                 <div class="celda nombre">${user.userName}</div>
                                                                 <div class="celda numero">${user.result}</div>
                                                             </div>
                                                         </li>
-
                                                     </c:forEach>
                                                 </div>
                                             </div>
 
                                             <c:forEach items="${results.roundResult}" var="rounds">
-
                                                 <div role="tabpanel" class="tab-pane" id="ronda${rounds.key}">
                                                     <div class="contenido_tab">
                                                         <div class="titulo">Ronda ${rounds.key}</div>
                                                         <c:forEach items="${rounds.value}" var="user">
-                                                            <li>
+                                                            <li class="lista_usuarios">
                                                                 <div class="tabla_contenedor">
-                                                                    <div class="celda imagen"><img
-                                                                        src="https://lh4.googleusercontent.com/-XPN0I-nYmJ4/AAAAAAAAAAI/AAAAAAAAAQs/q7BnurV_LXM/photo.jpg"
-                                                                        class="img-avatar"></div>
-                                                                <div class="celda nombre">${user.userName}</div>
-                                                                <div class="celda numero">${user.result}</div>
-                                                            </div>
+                                                                    <div class="celda imagen"><img src="${user.userAvatar}" class="img-avatar"></div>
+                                                                    <div class="celda nombre">${user.userName}</div>
+                                                                    <div class="celda numero">${user.result}</div>
+                                                                </div>
                                                             </li>
                                                         </c:forEach>
                                                     </div>
                                                 </div>
                                             </c:forEach>
-
                                         </div>
                                     </div>
                                 </div>

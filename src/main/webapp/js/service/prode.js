@@ -4,12 +4,13 @@ prode.service.travel = (function () {
     var uriApi = prode.service.uriApi();
     var url = prode.urlBase();
 
-    function editar(fixtureRound) {
+    function editar(listResult) {
         var data = {
             url: url + uriApi + uriFix,
             type: 'POST',
-            contentType: 'application/json',
-            data: fixtureRound
+            contentType: "application/json; charset=utf-8",
+            dataType   : "json",
+            data:  JSON.stringify(listResult)
         };
         return $.ajax(data)
     }

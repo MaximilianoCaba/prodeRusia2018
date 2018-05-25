@@ -5,7 +5,7 @@ import com.prode.entity.Match;
 import com.prode.entity.MatchUser;
 import com.prode.entity.User;
 import com.prode.repository.MatchRepository;
-import com.prode.repository.UserMatchRepository;
+import com.prode.repository.MatchUserRepository;
 import com.prode.repository.UserRepository;
 import com.prode.response.myRound.FixtureRound;
 import com.prode.response.home.Result;
@@ -25,7 +25,7 @@ import java.util.stream.Collectors;
 public class ResultServiceImpl implements ResultService {
 
     @Autowired
-    private UserMatchRepository userMatchRepository;
+    private MatchUserRepository matchUserRepository;
 
     @Autowired
     private MatchRepository matchRepository;
@@ -40,7 +40,7 @@ public class ResultServiceImpl implements ResultService {
 
         //TODO devolver una lista de usuarios vacios y concatenarle el resultado
 
-        List<MatchUser> matchUsers = userMatchRepository.findAll();
+        List<MatchUser> matchUsers = matchUserRepository.findAll();
 
         Map<String, Integer> resultAllRound = new HashMap<>();
 
@@ -148,7 +148,7 @@ public class ResultServiceImpl implements ResultService {
     public FixtureRound getFixture(User user) {
 
         List<Match> allMatches = matchRepository.findAll();
-        List<MatchUser> allMatchesListUser = userMatchRepository.findAllByUser(user);
+        List<MatchUser> allMatchesListUser = matchUserRepository.findAllByUser(user);
         FixtureRound fixtureRound = new FixtureRound();
 
         for (int round = 1; round < roundsWorldCup; ++round) {

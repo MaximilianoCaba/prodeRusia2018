@@ -2,66 +2,66 @@ package com.prode.request;
 
 public class PronosticResult {
 
-    private int matchId;
+    private Long matchId;
 
-    private int userId;
+    private Long userId;
 
-    private int goalHome;
+    private Integer goalHome;
 
-    private int goalAway;
+    private Integer goalAway;
 
-    private int goalPenaltyHome;
+    private Integer goalPenaltyHome;
 
-    private int goalPenaltyAway;
+    private Integer goalPenaltyAway;
 
     public PronosticResult() {
     }
 
-    public int getMatchId() {
+    public Long getMatchId() {
         return matchId;
     }
 
-    public void setMatchId(int matchId) {
+    public void setMatchId(Long matchId) {
         this.matchId = matchId;
     }
 
-    public int getUserId() {
+    public Long getUserId() {
         return userId;
     }
 
-    public void setUserId(int userId) {
+    public void setUserId(Long userId) {
         this.userId = userId;
     }
 
-    public int getGoalHome() {
+    public Integer getGoalHome() {
         return goalHome;
     }
 
-    public void setGoalHome(int goalHome) {
+    public void setGoalHome(Integer goalHome) {
         this.goalHome = goalHome;
     }
 
-    public int getGoalAway() {
+    public Integer getGoalAway() {
         return goalAway;
     }
 
-    public void setGoalAway(int goalAway) {
+    public void setGoalAway(Integer goalAway) {
         this.goalAway = goalAway;
     }
 
-    public int getGoalPenaltyHome() {
+    public Integer getGoalPenaltyHome() {
         return goalPenaltyHome;
     }
 
-    public void setGoalPenaltyHome(int goalPenaltyHome) {
+    public void setGoalPenaltyHome(Integer goalPenaltyHome) {
         this.goalPenaltyHome = goalPenaltyHome;
     }
 
-    public int getGoalPenaltyAway() {
+    public Integer getGoalPenaltyAway() {
         return goalPenaltyAway;
     }
 
-    public void setGoalPenaltyAway(int goalPenaltyAway) {
+    public void setGoalPenaltyAway(Integer goalPenaltyAway) {
         this.goalPenaltyAway = goalPenaltyAway;
     }
 }

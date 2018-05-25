@@ -12,43 +12,55 @@ prode.ui.form.fixEdit = (function () {
         $buttonEditRoundFix.on("click", function () {
             var inputs = document.getElementById('form').children;
 
+
             var listResult = [];
             var round;
-            var i;
-            for (i in inputs) {
+            for (var indexRounds in inputs) {
 
-                if(i === "0"){
-                    round =  inputs[i].value
-                }
+                if (indexRounds < 7) {
 
-                if(i !== "0" && inputs.length > i ){
+                    round = inputs[indexRounds];
 
-                    var pronosticMatch = {
-                        "matchId": inputs[i].children[0].value,
-                        "userId": inputs[i].children[1].value,
-                        "goalHome": inputs[i].children[2].children[3].children[1].value,
-                        "goalAway": inputs[i].children[2].children[6].children[1].value,
-                        "goalPenaltyHome": "",
-                        "goalPenaltyAway": ""
-                    };
-                    if (!isEmpty(pronosticMatch.goalAway) && !isEmpty(pronosticMatch.goalHome) &&
-                        !isEmpty(pronosticMatch.userId) && !isEmpty(pronosticMatch.matchId)) {
-                        listResult.push(pronosticMatch)
+                    var rondaLista = round.children[0].children[1].children;
+
+                    for (var indexMatch in rondaLista) {
+
+                        if (rondaLista[indexMatch].id === "matchId") {
+
+                            var indexMatchId = parseInt(indexMatch);
+                            var indexUserId = indexMatchId + 1;
+                            var indexMyMatchId = indexMatchId + 2;
+
+                            var goalHome = rondaLista[indexMyMatchId].children[0].children[0].children[2].children[0].value;
+                            var goalAway = rondaLista[indexMyMatchId].children[0].children[0].children[4].children[0].value;
+
+                            var goalPenaltyHome = "";
+                            var goalPenaltyAway = "";
+
+                            if (indexRounds > 2) {
+                                goalPenaltyHome = rondaLista[indexMyMatchId].children[0].children[1].children[2].children[0].value;
+                                goalPenaltyAway = rondaLista[indexMyMatchId].children[0].children[1].children[4].children[0].value;
+                            }
+
+                            var pronosticMatch = {
+                                "matchId": rondaLista[indexMatchId].value,
+                                "userId": rondaLista[indexUserId].value,
+                                "goalHome": goalHome,
+                                "goalAway": goalAway,
+                                "goalPenaltyHome": goalPenaltyHome,
+                                "goalPenaltyAway": goalPenaltyAway
+                            };
+
+                            listResult.push(pronosticMatch);
+
+                        }
                     }
 
-                    if(round > 3){
-                        pronosticMatch.goalPenaltyHome = inputs[i].children[2].children[4].children[1].value;
-                        pronosticMatch.goalPenaltyAway = inputs[i].children[2].children[5].children[1].value;
-                    }
                 }
             }
 
-            var result = JSON.stringify({
-                "round": round,
-                "pronosticResult": listResult
-            });
+            editarFix(listResult)
 
-            editarFix(result)
         })
     }
 
@@ -56,7 +68,7 @@ prode.ui.form.fixEdit = (function () {
         prode.service.travel.editar(listResult).done(function () {
             redireccionarAUrlRetorno()
         }).fail(function (error) {
-            console.log(error.responseJSON.message)
+            console.log(error.responseJSON)
         })
     }
 

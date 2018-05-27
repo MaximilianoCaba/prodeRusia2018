@@ -1,7 +1,6 @@
 package com.prode.controller.rest;
 
 
-import com.prode.entity.User;
 import com.prode.request.PronosticResult;
 import com.prode.service.UserMatchService;
 import com.prode.service.UserService;

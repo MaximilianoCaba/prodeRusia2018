@@ -3,6 +3,8 @@ package com.prode.entity;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
+import java.sql.Timestamp;
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.Set;
 
@@ -39,7 +41,7 @@ public class Match {
     private Integer penaltyGoalAway;
 
     @Column(name = "DATE")
-    private Date date;
+    private Timestamp date;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "ID_STATE")
@@ -124,11 +126,11 @@ public class Match {
         this.matches = matches;
     }
 
-    public Date getDate() {
+    public Timestamp getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(Timestamp date) {
         this.date = date;
     }
 

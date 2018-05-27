@@ -26,7 +26,7 @@
                         <c:otherwise>
                             <li><a href="<c:url value="/"/>">Tabla general</a></li>
                             <li><a href="<c:url value="/myRound"/>">Mi Fixture</a></li>
-                            <li><a href="#">${user.name}</a></li>
+                            <li><a href="<c:url value="/rules"/>">Reglamento</a></li>
                             <li class="hidden-xs"><img src="${user.avatar}" class="img-avatar header"></li>
                         </c:otherwise>
                     </c:choose>

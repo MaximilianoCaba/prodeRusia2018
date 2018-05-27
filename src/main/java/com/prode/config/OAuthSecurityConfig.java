@@ -79,6 +79,7 @@ public class OAuthSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/403").permitAll()
                 .antMatchers("/404").permitAll()
                 .antMatchers("/api/**").permitAll()
+                .antMatchers("/apiAdmin/**").permitAll()
                 .antMatchers("/v2/api-docs/**").permitAll()
                 .antMatchers("/swagger-ui.html/**").permitAll()
 

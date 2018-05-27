@@ -34,4 +34,9 @@ public class ViewController {
         return "site.myRound";
     }
 
+    @RequestMapping(value = "/rules")
+    public String rules(Authentication authentication, Model model) {
+        model.addAttribute("user", userService.getUserWhitSession(authentication));
+        return "site.rules";
+    }
 }

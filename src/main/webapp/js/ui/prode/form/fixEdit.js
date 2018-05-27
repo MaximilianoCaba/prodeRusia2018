@@ -3,6 +3,9 @@ prode.ui.form.fixEdit = (function () {
     var urlBase = prode.urlBase();
 
     var $buttonEditRoundFix = $("#botonEditarFix");
+    var $spinner = $("#spinnerEditarFix");
+    var $modalGuardado =  $("#modalExitoGuardar");
+
 
     function init() {
         bindearEventosABotonEditar();
@@ -10,6 +13,11 @@ prode.ui.form.fixEdit = (function () {
 
     function bindearEventosABotonEditar() {
         $buttonEditRoundFix.on("click", function () {
+
+            $spinner.removeClass("hide");
+            $buttonEditRoundFix.addClass("disabled");
+            $modalGuardado.modal('hide');
+
             var inputs = document.getElementById('form').children;
 
 
@@ -65,19 +73,20 @@ prode.ui.form.fixEdit = (function () {
     }
 
     function editarFix(listResult) {
-        prode.service.travel.editar(listResult).done(function () {
-            redireccionarAUrlRetorno()
-        }).fail(function (error) {
-            console.log(error.responseJSON)
+        prode.service.prode.editar(listResult).done(function (result) {
+            if(result === "OK"){
+                $buttonEditRoundFix.removeClass("disabled");
+                $spinner.addClass("hide");
+            }else{
+                $modalGuardado.modal('show');
+                $buttonEditRoundFix.removeClass("disabled");
+                $spinner.addClass("hide");
+            }
         })
     }
 
     function redireccionarAUrlRetorno() {
         window.location.href = urlBase
-    }
-
-    function isEmpty(str) {
-        return (!str || 0 === str.length);
     }
 
     return {

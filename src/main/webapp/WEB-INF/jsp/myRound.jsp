@@ -28,19 +28,50 @@
                                 <div class="col-sm-8 col-sm-offset-2">
                                     <div>
                                         <ul class="nav nav-tabs text-center" role="tablist">
+
                                             <c:forEach items="${results.rounds}" var="rounds">
-                                                <li role="presentation" <c:if test="${rounds.round == 1}"><c:out value="class='active'"/></c:if> >
-                                                    <a href="#ronda${rounds.round}" aria-controls="ronda1" role="tab" data-toggle="tab">Ronda ${rounds.round}</a>
-                                                </li>
+
+                                                <c:choose>
+                                                    <c:when test="${rounds.round == 1}">
+                                                        <li role="presentation" class="active">
+                                                            <a href="#ronda${rounds.round}" aria-controls="ronda1" role="tab" data-toggle="tab">Ronda ${rounds.round}</a>
+                                                        </li>
+                                                    </c:when>
+                                                    <c:otherwise>
+                                                        <li role="presentation">
+                                                            <a href="#ronda${rounds.round}" aria-controls="ronda1" role="tab" data-toggle="tab">Ronda ${rounds.round}</a>
+                                                        </li>
+                                                    </c:otherwise>
+                                                </c:choose>
+
+
                                             </c:forEach>
                                         </ul>
 
                                         <div class="tab-content" id="form">
+
+
+
                                             <c:forEach items="${results.rounds}" var="rounds">
-                                                <div role="tabpanel" class="tab-pane" id="ronda${rounds.round}">
+
+                                                <c:choose>
+                                                    <c:when test="${rounds.round == 1}">
+                                                <div role="tabpanel" class="tab-pane active" id="ronda${rounds.round}">
+
+                                                </c:when>
+                                                    <c:otherwise>
+                                                    <div role="tabpanel" class="tab-pane" id="ronda${rounds.round}">
+
+                                                    </c:otherwise>
+                                                </c:choose>
+
                                                     <div class="contenido_tab" id>
                                                         <div class="titulo">Ronda ${rounds.round}</div>
                                                         <ul class="ronda_lista">
+
+                                                            <c:choose>
+                                                            <c:when test="${ fn:length(rounds.matches) != 0}">
+
                                                             <c:forEach items="${rounds.matches}" var="round">
                                                                 <input type="hidden" id="matchId" value="${round.match.id}">
                                                                 <input type="hidden" id="userId" value="${round.matchUser.user.id}">
@@ -61,7 +92,7 @@
 
                                                                         </div>
                                                                         <c:choose>
-                                                                            <c:when test="${rounds.round > 2}">
+                                                                            <c:when test="${rounds.round > 3}">
                                                                                 <div class="fila penales">
                                                                                     <div class="celda"></div>
                                                                                     <div class="celda"></div>
@@ -83,16 +114,25 @@
                                                                             <div class="text-center resultado_partido"> Resultado partido: <b>${round.match.teamHome.name} ${round.match.goalHome} - ${round.match.teamAway.name} ${round.match.goalAway}</b></div>
                                                                         </c:when>
                                                                         <c:otherwise>
-                                                                            <div class="text-center resultado_partido">Info: <b> <fmt:formatDate value="${round.match.date}" pattern="yy-MM-dd hh:mm"/> </b></div>
+                                                                            <div class="text-center resultado_partido">Info: <b> <fmt:formatDate value="${round.match.date}" pattern="yy-MM-dd hh:mm a"/> </b></div>
                                                                         </c:otherwise>
                                                                     </c:choose>
                                                                 </li>
                                                             </c:forEach>
+                                                            </c:when>
+                                                                <c:otherwise>
+
+                                                                    <div class="titulo" style="border-bottom: 0px solid">Aun no hemos cargado esta ronda</div>
+                                                                    <div class="titulo" style="border-bottom: 0px solid">Se iran cargando a medida que se resuelvan las rondas anteriores</div>
+
+                                                                </c:otherwise>
+                                                            </c:choose>
+
                                                         </ul>
                                                     </div>
                                                 </div>
                                             </c:forEach>
-                                            <div><button id="botonEditarFix" class="btn btn-lg btn-iniciar">Editar Fixture</button></div>
+                                            <div><button id="botonEditarFix" class="btn btn-lg btn-iniciar">Editar Fixture  <i id="spinnerEditarFix" class="fa fa-spinner fa-spin hide"></i> </button></div>
                                         </div>
                                     </div>
                                 </div>
@@ -100,6 +140,18 @@
                         </div>
                     </div>
                 </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="modal fade" id="modalExitoGuardar" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div id="textoError"><p>Error al guardar su Fixture, por favor si persiste este mensaje contacte al administrador de la pp</p></div>
+                <button type="button" class="btn btn-secondary centrado" data-dismiss="modal">Close</button>
             </div>
         </div>
     </div>

@@ -30,6 +30,10 @@
         <put-attribute name="body" value="/WEB-INF/jsp/myRound.jsp" />
     </definition>
 
+    <definition name="site.rules" extends="layout.basic">
+        <put-attribute name="body" value="/WEB-INF/jsp/rule.jsp" />
+    </definition>
+
     <!-- PAGES -->
 
     <!-- ERROR PAGES -->

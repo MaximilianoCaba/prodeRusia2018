@@ -1,4 +1,4 @@
-prode.service.travel = (function () {
+prode.service.prode = (function () {
 
     var uriFix = prode.service.uriFixture();
     var uriApi = prode.service.uriApi();
@@ -9,7 +9,6 @@ prode.service.travel = (function () {
             url: url + uriApi + uriFix,
             type: 'POST',
             contentType: "application/json; charset=utf-8",
-            dataType   : "json",
             data:  JSON.stringify(listResult)
         };
         return $.ajax(data)

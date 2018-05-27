@@ -14,13 +14,9 @@
         <p class="text-center"><spring:message code="error.403.description"/>
         </p>
         <p class="text-center">
-        <form action="<c:url value="/"/>google/login" method="GET">
-            <div class="login-box-btm text-center">
-                <button class="loginBtn loginBtn--google">
-                    <spring:message code="error.403.button"/>
-                </button>
-            </div>
-        </form>
+
+            <a href="<c:url value="/"/>google/login" class="btn btn-lg btn-iniciar" style="  background-color: rgba(234, 22, 22, 0.2); color: #ad2525;">Iniciar sesi&oacute;n</a>
+
         </p>
     </div>
 </div>

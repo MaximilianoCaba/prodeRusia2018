@@ -11,4 +11,5 @@ public interface MatchRepository extends JpaRepository<Match, Long> {
     public List<Match> findAllByRound(Integer round);
 
     public Match findByRoundAndTeamHomeAndTeamAway(Integer round, Team teamHome, Team teamAway);
+
 }

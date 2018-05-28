@@ -46,12 +46,6 @@ CREATE TABLE IF NOT EXISTS `match_state` (
 )
   ENGINE = InnoDB;
 
-ALTER TABLE `match_user`
-  ADD CONSTRAINT `user_fk` FOREIGN KEY (`ID_USER`) REFERENCES `user` (`ID`);
-
-ALTER TABLE `match_user`
-  ADD CONSTRAINT `match_fk` FOREIGN KEY (`ID_MATCH`) REFERENCES `team` (`ID`);
-
 ALTER TABLE `match`
   ADD CONSTRAINT `teamHome_fk` FOREIGN KEY (`ID_TEAM_HOME`) REFERENCES `team` (`ID`);
 

@@ -12,4 +12,23 @@ public class DateUtility {
         Date parsed = format.parse(date);
         return new java.sql.Timestamp(parsed.getTime());
     }
+
+    //resta dos timestamp y da un numero en segundos, si el resultado es menor a 3600
+    // significa que falta menos de 1 hora entre esas dos fechas
+    public static boolean ifLessThanAnHourDiference() throws ParseException {
+
+        String dateas = "2018-05-27 23:50";
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+        Date date = format.parse(dateas);
+        Timestamp timestamp3 = new Timestamp(date.getTime());
+
+        Timestamp timestampNow = new Timestamp(new Date().getTime());
+        long miliseconds = timestamp3.getTime() - timestampNow.getTime();
+
+        if(miliseconds < 3600000)
+            return true;
+        else
+            return false;
+
+    }
 }

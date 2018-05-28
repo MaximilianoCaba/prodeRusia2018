@@ -83,7 +83,7 @@
                                                                             <div class="celda">
                                                                                 <input <c:if test="${round.match.matchState.id != 1}"><c:out value="disabled='disabled'"/></c:if> value="${round.matchUser.goalHome}" type="number"/>
                                                                             </div>
-                                                                            <div class="celda"><div class="division"></div></div>
+                                                                            <div class="celda"> Pronostico </div>
                                                                             <div class="celda">
                                                                                 <input <c:if test="${round.match.matchState.id != 1}"><c:out value="disabled='disabled'"/></c:if> value="${round.matchUser.goalAway}" type="number"/>
                                                                             </div>
@@ -99,7 +99,7 @@
                                                                                     <div class="celda">
                                                                                         <input <c:if test="${round.match.matchState.id != 1}"><c:out value="disabled='disabled'"/></c:if> value="${round.matchUser.penaltyGoalHome}" type="number"/>
                                                                                     </div>
-                                                                                    <div class="celda">Penales</div>
+                                                                                    <div class="celda"> Penales </div>
                                                                                     <div class="celda">
                                                                                         <input <c:if test="${round.match.matchState.id != 1}"><c:out value="disabled='disabled'"/></c:if> value="${round.matchUser.penaltyGoalAway}" type="number"/>
                                                                                     </div>

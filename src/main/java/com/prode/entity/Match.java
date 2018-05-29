@@ -1,11 +1,11 @@
 package com.prode.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
-import java.time.LocalDate;
-import java.util.Date;
 import java.util.Set;
 
 @Entity
@@ -140,5 +140,25 @@ public class Match {
 
     public void setMatchState(MatchState matchState) {
         this.matchState = matchState;
+    }
+
+    public Timestamp getTimeAdd3Hours() {
+        long treeHours = (((180 * 60)) * 1000);
+        Timestamp timestamp = new Timestamp(1);
+        timestamp.setTime(this.getDate().getTime() + treeHours);
+        return timestamp;
+    }
+
+    @Override
+    public String toString() {
+
+        ObjectMapper mapper = new ObjectMapper();
+
+        try {
+            return mapper.writeValueAsString(this);
+        } catch (JsonProcessingException e) {
+            return "";
+        }
+
     }
 }

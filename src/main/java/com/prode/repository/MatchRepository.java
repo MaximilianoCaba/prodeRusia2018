@@ -1,6 +1,7 @@
 package com.prode.repository;
 
 import com.prode.entity.Match;
+import com.prode.entity.MatchState;
 import com.prode.entity.Team;
 import org.springframework.data.jpa.repository.JpaRepository;
 
@@ -12,4 +13,5 @@ public interface MatchRepository extends JpaRepository<Match, Long> {
 
     public Match findByRoundAndTeamHomeAndTeamAway(Integer round, Team teamHome, Team teamAway);
 
+    public List<Match> findAllByMatchState(MatchState matchState);
 }

@@ -38,8 +38,6 @@ public class ResultServiceImpl implements ResultService {
     @Override
     public Result getResultRound() {
 
-        //TODO devolver una lista de usuarios vacios y concatenarle el resultado
-
         List<MatchUser> matchUsers = matchUserRepository.findAll();
 
         Map<String, Integer> resultAllRound = new HashMap<>();

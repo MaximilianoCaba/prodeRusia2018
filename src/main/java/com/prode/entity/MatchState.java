@@ -24,6 +24,11 @@ public class MatchState {
     public MatchState() {
     }
 
+    public MatchState(String state, Set<Match> matches) {
+        this.state = state;
+        this.matches = matches;
+    }
+
     public Long getId() {
         return id;
     }

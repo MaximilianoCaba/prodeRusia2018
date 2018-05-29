@@ -1,5 +1,8 @@
 package com.prode.entity;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 import javax.persistence.*;
 
 @Entity
@@ -7,11 +10,11 @@ import javax.persistence.*;
 public class MatchUser {
 
     @Id
-    @Column(name ="ID")
+    @Column(name = "ID")
     private Long id;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name ="ID_MATCH")
+    @JoinColumn(name = "ID_MATCH")
     private Match match;
 
     @ManyToOne(fetch = FetchType.EAGER)
@@ -90,4 +93,15 @@ public class MatchUser {
     }
 
 
+    @Override
+    public String toString() {
+
+        ObjectMapper mapper = new ObjectMapper();
+
+        try {
+            return mapper.writeValueAsString(this);
+        } catch (JsonProcessingException e) {
+            return "";
+        }
+    }
 }

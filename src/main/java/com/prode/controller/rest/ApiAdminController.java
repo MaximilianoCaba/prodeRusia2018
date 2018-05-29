@@ -4,6 +4,7 @@ import com.prode.Utils.AuthorizationApi;
 import com.prode.entity.Match;
 import com.prode.enums.TeamEnum;
 import com.prode.service.MatchService;
+import com.prode.service.MessengerService;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,12 +12,14 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
-import java.security.NoSuchAlgorithmException;
 import java.util.List;
 
 @RestController
 @RequestMapping("/apiAdmin")
 public class ApiAdminController {
+
+    @Autowired
+    private MessengerService messengerService;
 
     @Autowired
     private MatchService matchService;
@@ -75,6 +78,35 @@ public class ApiAdminController {
 
         if (AuthorizationApi.ifUserIsAuthenticate(pass, clientId, clientSecret))
             matchService.updateMatch(matchId, teamHome, teamAway, goalHome, goalAway, goalPenaltyHome, goalPenaltyAway);
+        else
+            throw new Exception(UNDAUTHORIZED);
+    }
+
+
+
+    @RequestMapping(value = "/sendEmail", method = RequestMethod.POST)
+    @ApiOperation(consumes = "application/json", value = "Envia un email a la casilla pre seteado en la app")
+    @ResponseStatus(HttpStatus.CREATED)
+    public void sendEmail(@ApiParam(value ="titulo del mail", name = "title", required = true) @RequestParam("title") String  title,
+                          @ApiParam(value="Mensaje del email",name = "message", required = true) @RequestParam("message") String message,
+                          @ApiParam(value="Contraseña de la api",name = "pass", required = true) @RequestParam("pass") String pass) throws Exception {
+
+        if (AuthorizationApi.ifUserIsAuthenticate(pass, clientId, clientSecret))
+            messengerService.sendNotificationMail(title, message);
+        else
+            throw new Exception(UNDAUTHORIZED);
+    }
+
+
+    @RequestMapping(value = "/sendWorkPlace", method = RequestMethod.POST)
+    @ApiOperation(consumes = "application/json", value = "envia una notificacion al workplace a grupo pre seteado en la app")
+    @ResponseStatus(HttpStatus.CREATED)
+    public void sendWorkPlace(@ApiParam(value ="url de la pagina a vincular", name = "url", required = true) @RequestParam("url") String  url,
+                          @ApiParam(value="Mensaje del email",name = "message", required = true) @RequestParam("message") String message,
+                          @ApiParam(value="Contraseña de la api",name = "pass", required = true) @RequestParam("pass") String pass) throws Exception {
+
+        if (AuthorizationApi.ifUserIsAuthenticate(pass, clientId, clientSecret))
+            messengerService.sendNotificationWorkplace(url, message);
         else
             throw new Exception(UNDAUTHORIZED);
     }

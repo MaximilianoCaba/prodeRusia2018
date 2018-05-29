@@ -2,8 +2,8 @@ package com.prode.service;
 
 public interface MessengerService {
 
-    Boolean sendNotificationWorkplace(String urlTravel, String data)throws  Exception;
+    void sendNotificationWorkplace(String urlPage, String message)throws  Exception;
 
-    Boolean sendNotificationMail(String mail, String title, String message);
+    void sendNotificationMail(String title, String message);
 }
 

@@ -146,13 +146,19 @@
 </div>
 
 
-<div class="modal fade" id="modalExitoGuardar" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
-            <div class="modal-body">
-                <div id="textoError"><p>Error al guardar su Fixture, por favor si persiste este mensaje contacte al administrador de la pp</p></div>
-                <button type="button" class="btn btn-secondary centrado" data-dismiss="modal">Close</button>
+    <div class="modal fade" id="modalExitoGuardar" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="gridSystemModalLabel">Aviso</h4>
+                </div>
+                <div class="modal-body text-center aviso_modal">
+                    Error al guardar su Fixture<br />Por favor si persiste este mensaje contacte al administrador de la pp
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-cerrar" data-dismiss="modal">Cerrar</button>
+                </div>
             </div>
         </div>
     </div>
-</div>

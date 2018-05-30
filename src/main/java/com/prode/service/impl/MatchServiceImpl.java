@@ -70,17 +70,34 @@ public class MatchServiceImpl implements MatchService {
             throw new Exception("El match id es incorrecto");
 
         if (match.getTeamHome().getId().equals(teamHome.getId()) && match.getTeamAway().getId().equals(teamAway.getId())) {
-            match.setGoalHome(goalHome);
-            match.setGoalAway(goalAway);
-            match.setPenaltyGoalAway(goalPenaltyAway);
-            match.setPenaltyGoalHome(goalPenaltyHome);
-            match.setMatchState(matchStateRepository.getOne(3L));
 
-            try {
-                matchRepository.save(match);
-            } catch (Exception e) {
-                throw new Exception("no se a podido guardar el resultado en la db");
+            boolean validgoalHome = goalHome != null && goalHome > 0;
+            boolean validgoalAway = goalAway != null && goalAway > 0;
+            boolean validgoalPenaltyHome = goalPenaltyHome != null && goalPenaltyHome > 0;
+            boolean validgoalPenaltyAway = goalPenaltyAway != null && goalPenaltyAway > 0;
+
+            if(validgoalHome && validgoalAway){
+                match.setGoalHome(goalHome);
+                match.setGoalAway(goalAway);
+
+                if(validgoalPenaltyAway && validgoalPenaltyHome){
+                    match.setPenaltyGoalAway(goalPenaltyAway);
+                    match.setPenaltyGoalHome(goalPenaltyHome);
+                }
+
+                match.setMatchState(matchStateRepository.getOne(3L));
+
+                try {
+                    matchRepository.save(match);
+                } catch (Exception e) {
+                    throw new Exception("no se a podido guardar el resultado en la db");
+                }
+            }else{
+                throw new Exception("los goles e y visitante no son validos");
+
             }
+
+
         }
     }
 }

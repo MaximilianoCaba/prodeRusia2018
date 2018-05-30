@@ -40,9 +40,15 @@ public class UserMatchServiceImpl implements UserMatchService {
         List<MatchUser> matchUserList = new ArrayList<>();
 
         pronosticResultList.forEach(pronosticResult -> {
+
+            boolean validgoalHome = pronosticResult.getGoalHome() != null && pronosticResult.getGoalHome() > 0;
+            boolean validgoalAway = pronosticResult.getGoalAway() != null && pronosticResult.getGoalAway() > 0;
+            boolean validgoalPenaltyHome = pronosticResult.getGoalPenaltyHome() != null && pronosticResult.getGoalPenaltyHome() > 0;
+            boolean validgoalPenaltyAway = pronosticResult.getGoalPenaltyAway() != null && pronosticResult.getGoalPenaltyAway() > 0;
+
             Match match = matches.get(pronosticResult.getMatchId());
             if (match.getMatchState().getId() == 1) {
-                if (pronosticResult.getGoalAway() != null && pronosticResult.getGoalHome() != null) {
+                if (validgoalHome && validgoalAway) {
                     MatchUser matchUser = new MatchUser();
                     Long matchUserId = Long.valueOf(String.valueOf(match.getId()).concat(String.valueOf(user.getId())));
                     matchUser.setId(matchUserId);
@@ -51,7 +57,7 @@ public class UserMatchServiceImpl implements UserMatchService {
                     matchUser.setGoalAway(pronosticResult.getGoalAway());
                     matchUser.setGoalHome(pronosticResult.getGoalHome());
                     if (match.getRound() > 3) {
-                        if (pronosticResult.getGoalPenaltyAway() != null && pronosticResult.getGoalPenaltyHome() != null) {
+                        if (validgoalPenaltyHome && validgoalPenaltyAway) {
                             matchUser.setPenaltyGoalAway(pronosticResult.getGoalPenaltyAway());
                             matchUser.setPenaltyGoalHome(pronosticResult.getGoalPenaltyHome());
                             matchUserList.add(matchUser);

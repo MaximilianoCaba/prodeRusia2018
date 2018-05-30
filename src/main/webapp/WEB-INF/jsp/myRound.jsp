@@ -114,7 +114,7 @@
                                                                             <div class="text-center resultado_partido"> Resultado partido: <b>${round.match.teamHome.name} ${round.match.goalHome} - ${round.match.teamAway.name} ${round.match.goalAway}</b></div>
                                                                         </c:when>
                                                                         <c:otherwise>
-                                                                            <div class="text-center resultado_partido">Info: <b> <fmt:formatDate value="${round.match.date}" pattern="yy-MM-dd hh:mm a"/> </b></div>
+                                                                            <div class="text-center resultado_partido">Info: <b> <fmt:formatDate value="${round.match.date}" timeZone="GMT+0" pattern="yy-MM-dd hh:mm a" /> </b></div>
                                                                         </c:otherwise>
                                                                     </c:choose>
                                                                 </li>

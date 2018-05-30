@@ -17,6 +17,7 @@ import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
+import java.util.TimeZone;
 
 @Component
 public class ScheduledMatchTasks {
@@ -36,9 +37,12 @@ public class ScheduledMatchTasks {
     @Value("${url.app}")
     private String urlApp;
 
-    @Scheduled(cron = "*/30 * * * * *")
+    @Scheduled(cron = "* */30 * * * *")
     public void setInMatchGameAndSendMail() {
         System.out.println("se esta corriendo el cron setInMatchGameAndSendMail");
+
+        //si surge problemas cambiar el GTM por el local para transformar por ejemplo GTM-3 = arg
+        TimeZone.setDefault(TimeZone.getTimeZone("GMT"));
 
         MatchState matchState = new MatchState();
         matchState.setId(MatchEnum.NOT_STARTED.getIdSqlSchema());
@@ -48,7 +52,7 @@ public class ScheduledMatchTasks {
 
         allMatches.forEach(match -> {
             try {
-                if(DateUtility.ifLessThanAnHourDiference(match.getTimeAdd3Hours())){
+                if(DateUtility.ifLessThanAnHourDiference(match.getDate())){
 
                     List<MatchUser> matchUserList = matchUserRepository.findByMatch(match);
 
@@ -76,7 +80,7 @@ public class ScheduledMatchTasks {
 
     }
 
-    @Scheduled(cron = "*/360 * * * * *")
+    @Scheduled(cron = "* * */3 * * *")
     public void sendDailyResults() throws Exception {
         System.out.println("se esta corriendo el cron sendDailyResults");
         Result result = resultService.getResultRound();

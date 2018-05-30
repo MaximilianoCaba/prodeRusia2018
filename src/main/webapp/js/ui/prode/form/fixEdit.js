@@ -1,6 +1,6 @@
 prode.ui.form.fixEdit = (function () {
 
-    var urlBase = prode.urlBase();
+    var urlMyRound = prode.urlMyRound();
 
     var $buttonEditRoundFix = $("#botonEditarFix");
     var $spinner = $("#spinnerEditarFix");
@@ -77,6 +77,7 @@ prode.ui.form.fixEdit = (function () {
             if(result === "OK"){
                 $buttonEditRoundFix.removeClass("disabled");
                 $spinner.addClass("hide");
+                redireccionarAUrlRetorno()
             }else{
                 $modalGuardado.modal('show');
                 $buttonEditRoundFix.removeClass("disabled");
@@ -86,7 +87,7 @@ prode.ui.form.fixEdit = (function () {
     }
 
     function redireccionarAUrlRetorno() {
-        window.location.href = urlBase
+        window.location.href = urlMyRound
     }
 
     return {

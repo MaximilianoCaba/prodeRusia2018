@@ -81,11 +81,11 @@
                                                                             <div class="celda"><img src="${round.match.teamHome.flag}"></div>
                                                                             <div class="celda">${round.match.teamHome.name}</div>
                                                                             <div class="celda">
-                                                                                <input <c:if test="${round.match.matchState.id != 1}"><c:out value="disabled='disabled'"/></c:if> value="${round.matchUser.goalHome}" type="number"/>
+                                                                                <input <c:if test="${round.match.matchState.id != 1}"><c:out value="disabled='disabled'"/></c:if> value="${round.matchUser.goalHome}" type="number" min="0" max="99"/>
                                                                             </div>
                                                                             <div class="celda"> Pronostico </div>
                                                                             <div class="celda">
-                                                                                <input <c:if test="${round.match.matchState.id != 1}"><c:out value="disabled='disabled'"/></c:if> value="${round.matchUser.goalAway}" type="number"/>
+                                                                                <input <c:if test="${round.match.matchState.id != 1}"><c:out value="disabled='disabled'"/></c:if> value="${round.matchUser.goalAway}" type="number" min="0" max="99"/>
                                                                             </div>
                                                                             <div class="celda">${round.match.teamAway.name}</div>
                                                                             <div class="celda"><img src="${round.match.teamAway.flag}"></div>
@@ -97,11 +97,11 @@
                                                                                     <div class="celda"></div>
                                                                                     <div class="celda"></div>
                                                                                     <div class="celda">
-                                                                                        <input <c:if test="${round.match.matchState.id != 1}"><c:out value="disabled='disabled'"/></c:if> value="${round.matchUser.penaltyGoalHome}" type="number"/>
+                                                                                        <input <c:if test="${round.match.matchState.id != 1}"><c:out value="disabled='disabled'"/></c:if> value="${round.matchUser.penaltyGoalHome}" type="number" min="0" max="99"/>
                                                                                     </div>
                                                                                     <div class="celda"> Penales </div>
                                                                                     <div class="celda">
-                                                                                        <input <c:if test="${round.match.matchState.id != 1}"><c:out value="disabled='disabled'"/></c:if> value="${round.matchUser.penaltyGoalAway}" type="number"/>
+                                                                                        <input <c:if test="${round.match.matchState.id != 1}"><c:out value="disabled='disabled'"/></c:if> value="${round.matchUser.penaltyGoalAway}" type="number" min="0" max="99"/>
                                                                                     </div>
                                                                                     <div class="celda"></div>
                                                                                     <div class="celda"></div>

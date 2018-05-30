@@ -4,8 +4,13 @@ var prode =(function () {
         return 'http://localhost:8080/'
     }
 
+    function urlMyRound() {
+        return urlBase() + 'myRound'
+    }
+
     return {
-        urlBase: urlBase
+        urlBase: urlBase,
+        urlMyRound: urlMyRound
     }
 
 })();

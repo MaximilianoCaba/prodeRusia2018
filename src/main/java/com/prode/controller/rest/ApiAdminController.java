@@ -9,7 +9,6 @@ import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -64,49 +63,39 @@ public class ApiAdminController {
 
     }
 
-    @RequestMapping(value = "/addResult", method = RequestMethod.POST)
-    @ApiOperation(consumes = "application/json", value = "guardar un resultado de partido")
-    @ResponseStatus(HttpStatus.CREATED)
-    public void addResult(@ApiParam(value ="Identificador del partido", name = "matchId", required = true) @RequestParam("matchId") Long matchId,
+    @RequestMapping(value = "/editMatch", method = RequestMethod.POST)
+    @ApiOperation(consumes = "application/json", value = "Editar un partido Existente")
+    public void editMatch(  @ApiParam(value="Identificador del partido", name = "matchId", required = true) @RequestParam("matchId") Long matchId,
                             @ApiParam(value="Nombre del equipo local",name = "teamHome", required = true, allowableValues = teamAvailable) @RequestParam("teamHome") TeamEnum teamHome,
                             @ApiParam(value="Nombre del equipo visitante",name = "teamAway", required = true, allowableValues = teamAvailable) @RequestParam("teamAway") TeamEnum teamAway,
-                            @ApiParam(value = "Goles equipo local", name = "goalHome",required = true) @RequestParam("goalHome") Integer goalHome,
-                            @ApiParam(value = "Goles equipo visitante", name = "goalAway",required = true) @RequestParam("goalAway") Integer goalAway,
-                            @ApiParam(value = "Goles Penales equipo local", name = "goalPenaltyHome",required = true) @RequestParam("goalPenaltyHome") Integer goalPenaltyHome,
-                            @ApiParam(value = "Goles Penales equipo visitante", name = "goalPenaltyAway",required = true) @RequestParam("goalPenaltyAway") Integer goalPenaltyAway,
+                            @ApiParam(value="Goles equipo local", name = "goalHome",required = true) @RequestParam("goalHome") Integer goalHome,
+                            @ApiParam(value="Goles equipo visitante", name = "goalAway",required = true) @RequestParam("goalAway") Integer goalAway,
+                            @ApiParam(value="Goles equipo local (usar caracter '-' (guion medio) para partidos sin penales)", name = "goalHomePenal",required = false) @RequestParam("goalHomePenal") String goalHomePenal,
+                            @ApiParam(value="Goles equipo visitante (usar caracter '-' (guion medio) para partidos sin penales)", name = "goalAwayPenal",required = false) @RequestParam("goalAwayPenal") String goalAwayPenal,
                             @ApiParam(value="Contraseña de la api",name = "pass", required = true) @RequestParam("pass") String pass) throws Exception {
 
-        if (AuthorizationApi.ifUserIsAuthenticate(pass, clientId, clientSecret))
-            matchService.updateMatch(matchId, teamHome, teamAway, goalHome, goalAway, goalPenaltyHome, goalPenaltyAway);
-        else
+        if (AuthorizationApi.ifUserIsAuthenticate(pass, clientId, clientSecret)){
+
+            if(!goalHomePenal.equals("-") && !goalAwayPenal.equals("-")){
+                matchService.updateMatch(matchId, teamHome, teamAway, goalHome, goalAway, Integer.parseInt(goalHomePenal), Integer.parseInt(goalAwayPenal));
+            }else{
+                matchService.updateMatch(matchId, teamHome, teamAway, goalHome, goalAway, null, null);
+
+            }
+
+
+        } else
             throw new Exception(UNDAUTHORIZED);
+
     }
-
-
-
-    @RequestMapping(value = "/sendEmail", method = RequestMethod.POST)
-    @ApiOperation(consumes = "application/json", value = "Envia un email a la casilla pre seteado en la app")
-    @ResponseStatus(HttpStatus.CREATED)
-    public void sendEmail(@ApiParam(value ="titulo del mail", name = "title", required = true) @RequestParam("title") String  title,
-                          @ApiParam(value="Mensaje del email",name = "message", required = true) @RequestParam("message") String message,
-                          @ApiParam(value="Contraseña de la api",name = "pass", required = true) @RequestParam("pass") String pass) throws Exception {
-
-        if (AuthorizationApi.ifUserIsAuthenticate(pass, clientId, clientSecret))
-            messengerService.sendNotificationMail(title, message);
-        else
-            throw new Exception(UNDAUTHORIZED);
-    }
-
 
     @RequestMapping(value = "/sendWorkPlace", method = RequestMethod.POST)
     @ApiOperation(consumes = "application/json", value = "envia una notificacion al workplace a grupo pre seteado en la app")
-    @ResponseStatus(HttpStatus.CREATED)
-    public void sendWorkPlace(@ApiParam(value ="url de la pagina a vincular", name = "url", required = true) @RequestParam("url") String  url,
-                          @ApiParam(value="Mensaje del email",name = "message", required = true) @RequestParam("message") String message,
+    public void sendWorkPlace(@ApiParam(value="Mensaje del post",name = "message", required = true) @RequestParam("message") String message,
                           @ApiParam(value="Contraseña de la api",name = "pass", required = true) @RequestParam("pass") String pass) throws Exception {
 
         if (AuthorizationApi.ifUserIsAuthenticate(pass, clientId, clientSecret))
-            messengerService.sendNotificationWorkplace(url, message);
+            messengerService.sendNotificationWorkplace(message);
         else
             throw new Exception(UNDAUTHORIZED);
     }

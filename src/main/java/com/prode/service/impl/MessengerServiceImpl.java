@@ -35,15 +35,18 @@ public class MessengerServiceImpl implements MessengerService {
     @Value("${mail.get.notification}")
     private String notificationEmail;
 
+    @Value("${url.app}")
+    private String urlApp;
+
     @Override
-    public void sendNotificationWorkplace(String urlPost, String message)throws  Exception  {
+    public void sendNotificationWorkplace(String message)throws  Exception  {
         String url = apiWorkplace + idGroupWorkplace + "/feed" + tokenWorkplace;
         URL obj = new URL(url);
         HttpURLConnection con = (HttpURLConnection) obj.openConnection();
         con.setRequestMethod("POST");
         con.setDoOutput(true);
         DataOutputStream wr = new DataOutputStream(con.getOutputStream());
-        String urlParameters = "message=" + message+ "&" + "link=" + urlPost;
+        String urlParameters = "message=" + message+ "&" + "link=" + urlApp;
         wr.writeBytes(urlParameters);
         wr.flush();
         wr.close();

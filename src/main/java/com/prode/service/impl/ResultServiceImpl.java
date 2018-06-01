@@ -79,18 +79,16 @@ public class ResultServiceImpl implements ResultService {
             Boolean ifGoalHome = matchUser.getMatch().getGoalHome() != null;
             Boolean ifGoalAway = matchUser.getMatch().getGoalAway() != null;
 
-            if (ifGoalHome && ifGoalAway) {
+            Integer points = resultados.get(matchUser.getUser().getName());
 
-                Integer points = resultados.get(matchUser.getUser().getName());
+            if (points == null)
+                points = 0;
 
-                if (points == null)
-                    points = 0;
-
+            if (ifGoalHome && ifGoalAway)
                 points = points + MatchUtility.generatePointMatch(matchUser);
 
-                resultados.put(matchUser.getUser().getName(), points);
-            } else
-                resultados.put(matchUser.getUser().getName(), 0);
+            resultados.put(matchUser.getUser().getName(), points);
+
         }
         return resultados;
 

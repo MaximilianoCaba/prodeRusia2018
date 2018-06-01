@@ -15,11 +15,11 @@ body{
 	position:absolute;
 }
 .navbar-default .navbar-brand{
-	background-color:#fff;
+	background-color:transparent;
 	height:auto;
 }
 .navbar-default .navbar-brand:hover{
-	background-color:#fff;
+	background-color:transparent;
 }
 .navbar-default{
 	background-color:transparent;
@@ -258,7 +258,7 @@ body{
 }
 @media screen and (max-width: 767px) {
 	.navbar-header{
-		background-color:#fff;
+		background-color:transparent;
 	}
 	.navbar-header .navbar-brand img{
 		height:40px;
@@ -331,6 +331,9 @@ body{
 	}
 	.ronda_lista .tabla_contenedor, .tabla_contenedor.home{
 		display:table;
+	}
+	.ronda_lista .tabla_contenedor, .tabla_contenedor.home img{
+		width:100%;
 	}
 	.ronda_lista .tabla_contenedor .fila{
 		display:table-row;

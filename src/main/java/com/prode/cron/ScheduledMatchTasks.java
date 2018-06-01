@@ -34,10 +34,7 @@ public class ScheduledMatchTasks {
     @Autowired
     private ResultService resultService;
 
-    @Value("${url.app}")
-    private String urlApp;
-
-    @Scheduled(cron = "* */30 * * * *")
+    @Scheduled(cron = "0 0/30 * * * *")
     public void setInMatchGameAndSendMail() {
         System.out.println("se esta corriendo el cron setInMatchGameAndSendMail");
 
@@ -68,7 +65,7 @@ public class ScheduledMatchTasks {
                     String messageWorkPlace = MessengerUtility.generateMatchInProgressWorkPlace(match);
 
                     messengerService.sendNotificationMail(title, message);
-                    messengerService.sendNotificationWorkplace(urlApp, messageWorkPlace);
+                    messengerService.sendNotificationWorkplace(messageWorkPlace);
 
                 }
             } catch (Exception e) {
@@ -80,14 +77,14 @@ public class ScheduledMatchTasks {
 
     }
 
-    @Scheduled(cron = "* * */3 * * *")
+    @Scheduled(cron = "0 0 0/3 * * *")
     public void sendDailyResults() throws Exception {
         System.out.println("se esta corriendo el cron sendDailyResults");
         Result result = resultService.getResultRound();
         String message = MessengerUtility.generateRankingWorkPlace(result);
 
         if(!message.equals("")){
-            messengerService.sendNotificationWorkplace(urlApp, message);
+            messengerService.sendNotificationWorkplace(message);
         }
     }
 }

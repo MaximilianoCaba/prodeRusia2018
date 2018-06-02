@@ -25,13 +25,13 @@ public class ApiController {
     @RequestMapping(value = "/fixture", method = RequestMethod.POST)
     @ApiOperation(consumes = "application/json", value = "cargar fixture de un usuario")
     @ResponseStatus(HttpStatus.CREATED)
-    public String saveFixture(@RequestBody List<PronosticResult> pronosticResultList, Authentication authentication) {
+    public String saveFixture(@RequestBody List<PronosticResult> pronosticResultList, Authentication authentication) throws Exception {
         return userMatchService.savePronosticResult(pronosticResultList, userService.getUserWhitSession(authentication));
     }
 
     @RequestMapping(value ="/user", method = RequestMethod.GET)
     @ApiOperation(consumes = "application/json", value = "Obtener usuario Logueado")
-    public Object getUser(Authentication authentication) {
+    public Object getUser(Authentication authentication) throws Exception {
         return userService.getUserWhitSession(authentication);
     }
 

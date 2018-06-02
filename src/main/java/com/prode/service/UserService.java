@@ -9,7 +9,7 @@ public interface UserService {
 
     User getPersonByMail(String mail);
 
-    User getUserWhitSession(Authentication authentication);
+    User getUserWhitSession(Authentication authentication) throws Exception;
 
 }
 

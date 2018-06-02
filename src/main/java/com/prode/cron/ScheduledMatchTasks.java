@@ -12,7 +12,6 @@ import com.prode.response.home.Result;
 import com.prode.service.MessengerService;
 import com.prode.service.ResultService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
@@ -34,7 +33,8 @@ public class ScheduledMatchTasks {
     @Autowired
     private ResultService resultService;
 
-    @Scheduled(cron = "0 0/30 * * * *")
+    //corre cada 30 minutos
+    @Scheduled(cron = "0 */30 * * * *")
     public void setInMatchGameAndSendMail() {
         System.out.println("se esta corriendo el cron setInMatchGameAndSendMail");
 
@@ -62,11 +62,7 @@ public class ScheduledMatchTasks {
                     String message = MessengerUtility.generateMatchEmailMessage(match, matchUserList);
                     String title = MessengerUtility.generateMatchEmailTitle(match);
 
-                    String messageWorkPlace = MessengerUtility.generateMatchInProgressWorkPlace(match);
-
                     messengerService.sendNotificationMail(title, message);
-                    messengerService.sendNotificationWorkplace(messageWorkPlace);
-
                 }
             } catch (Exception e) {
                 e.printStackTrace();
@@ -74,10 +70,10 @@ public class ScheduledMatchTasks {
 
         });
 
-
     }
 
-    @Scheduled(cron = "0 0 0/3 * * *")
+    //corre a las 5 de la tarde
+    @Scheduled(cron = "0 0 17 * * *")
     public void sendDailyResults() throws Exception {
         System.out.println("se esta corriendo el cron sendDailyResults");
         Result result = resultService.getResultRound();

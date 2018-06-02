@@ -7,6 +7,7 @@ import com.prode.service.MatchService;
 import com.prode.service.MessengerService;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
@@ -76,14 +77,11 @@ public class ApiAdminController {
 
         if (AuthorizationApi.ifUserIsAuthenticate(pass, clientId, clientSecret)){
 
-            if(!goalHomePenal.equals("-") && !goalAwayPenal.equals("-")){
+            if(StringUtils.isNumeric(goalHomePenal) && StringUtils.isNumeric(goalAwayPenal)){
                 matchService.updateMatch(matchId, teamHome, teamAway, goalHome, goalAway, Integer.parseInt(goalHomePenal), Integer.parseInt(goalAwayPenal));
             }else{
                 matchService.updateMatch(matchId, teamHome, teamAway, goalHome, goalAway, null, null);
-
             }
-
-
         } else
             throw new Exception(UNDAUTHORIZED);
 

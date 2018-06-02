@@ -20,7 +20,7 @@ public class DateUtility {
         Timestamp timestampNow = new Timestamp(new Date().getTime());
         long miliseconds = timestamp3.getTime() - timestampNow.getTime();
 
-        if(miliseconds < 3600000)
+        if(miliseconds < 3610000)
             return true;
         else
             return false;

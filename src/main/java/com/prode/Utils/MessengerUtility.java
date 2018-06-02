@@ -2,6 +2,7 @@ package com.prode.Utils;
 
 import com.prode.entity.Match;
 import com.prode.entity.MatchUser;
+import com.prode.entity.User;
 import com.prode.response.home.Result;
 
 import java.util.List;
@@ -57,5 +58,11 @@ public class MessengerUtility {
 
 
         return message;
+    }
+
+    public static String generateUserRegisterWorkPlace(User user){
+        return "".concat(user.getName()).concat(" acaba de registrarse al prode! vos que estas esperando?");
+
+
     }
 }

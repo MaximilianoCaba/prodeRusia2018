@@ -73,14 +73,16 @@ public class MatchServiceImpl implements MatchService {
 
             boolean validgoalHome = goalHome != null && goalHome > 0;
             boolean validgoalAway = goalAway != null && goalAway > 0;
-            boolean validgoalPenaltyHome = goalPenaltyHome != null && goalPenaltyHome > 0;
-            boolean validgoalPenaltyAway = goalPenaltyAway != null && goalPenaltyAway > 0;
 
             if(validgoalHome && validgoalAway){
                 match.setGoalHome(goalHome);
                 match.setGoalAway(goalAway);
 
-                if(validgoalPenaltyAway && validgoalPenaltyHome){
+                boolean isDrawMatch = goalHome.equals(goalAway);
+                boolean validgoalPenaltyHome = goalPenaltyHome != null && goalPenaltyHome > 0;
+                boolean validgoalPenaltyAway = goalPenaltyAway != null && goalPenaltyAway > 0;
+
+                if(isDrawMatch && validgoalPenaltyAway && validgoalPenaltyHome){
                     match.setPenaltyGoalAway(goalPenaltyAway);
                     match.setPenaltyGoalHome(goalPenaltyHome);
                 }

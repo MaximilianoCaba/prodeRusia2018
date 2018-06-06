@@ -73,7 +73,7 @@ public class ScheduledMatchTasks {
     }
 
     //corre a las 5 de la tarde
-    @Scheduled(cron = "0 0 17 * * *")
+    //@Scheduled(cron = "0 0 17 * * *")
     public void sendDailyResults() throws Exception {
         System.out.println("se esta corriendo el cron sendDailyResults");
         Result result = resultService.getResultRound();

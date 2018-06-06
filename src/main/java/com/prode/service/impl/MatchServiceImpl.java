@@ -1,13 +1,17 @@
 package com.prode.service.impl;
 
 import com.prode.Utils.DateUtility;
+import com.prode.Utils.MessengerUtility;
 import com.prode.entity.Match;
 import com.prode.entity.Team;
 import com.prode.enums.TeamEnum;
 import com.prode.repository.MatchRepository;
 import com.prode.repository.MatchStateRepository;
 import com.prode.repository.TeamRepository;
+import com.prode.response.home.Result;
 import com.prode.service.MatchService;
+import com.prode.service.MessengerService;
+import com.prode.service.ResultService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -24,6 +28,12 @@ public class MatchServiceImpl implements MatchService {
 
     @Autowired
     private MatchStateRepository matchStateRepository;
+
+    @Autowired
+    private ResultService resultService;
+
+    @Autowired
+    private MessengerService messengerService;
 
 
     @Override
@@ -91,6 +101,7 @@ public class MatchServiceImpl implements MatchService {
 
                 try {
                     matchRepository.save(match);
+                    messengerService.sendNotificationWorkplace(MessengerUtility.finalMatchResult(resultService.getResultRound(), match));
                 } catch (Exception e) {
                     throw new Exception("no se a podido guardar el resultado en la db");
                 }

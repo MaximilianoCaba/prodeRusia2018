@@ -41,10 +41,10 @@ public class UserMatchServiceImpl implements UserMatchService {
 
         pronosticResultList.forEach(pronosticResult -> {
 
-            boolean validgoalHome = pronosticResult.getGoalHome() != null && pronosticResult.getGoalHome() > 0;
-            boolean validgoalAway = pronosticResult.getGoalAway() != null && pronosticResult.getGoalAway() > 0;
-            boolean validgoalPenaltyHome = pronosticResult.getGoalPenaltyHome() != null && pronosticResult.getGoalPenaltyHome() > 0;
-            boolean validgoalPenaltyAway = pronosticResult.getGoalPenaltyAway() != null && pronosticResult.getGoalPenaltyAway() > 0;
+            boolean validgoalHome = pronosticResult.getGoalHome() != null && pronosticResult.getGoalHome() >= 0;
+            boolean validgoalAway = pronosticResult.getGoalAway() != null && pronosticResult.getGoalAway() >= 0;
+            boolean validgoalPenaltyHome = pronosticResult.getGoalPenaltyHome() != null && pronosticResult.getGoalPenaltyHome() >= 0;
+            boolean validgoalPenaltyAway = pronosticResult.getGoalPenaltyAway() != null && pronosticResult.getGoalPenaltyAway() >= 0;
 
             Match match = matches.get(pronosticResult.getMatchId());
             if (match.getMatchState().getId() == 1) {

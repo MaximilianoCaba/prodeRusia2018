@@ -45,10 +45,8 @@
                                             <div role="tabpanel" class="tab-pane" id="reglas">
                                                 <div class="contenido_tab">
 
-                                                    <div class="titulo" style="display: block; border-bottom: 0px solid; font-size: 15px">Regla 1</div>
-                                                    <div class="titulo" style="display: block; border-bottom: 0px solid; font-size: 15px">Regla 2</div>
-                                                    <div class="titulo" style="display: block; border-bottom: 0px solid; font-size: 15px">Regla 3</div>
-                                                    <div class="titulo" style="display: block; border-bottom: 0px solid; font-size: 15px">Regla 4</div>
+                                                    <div class="titulo" style="display: block; border-bottom: 0px solid; font-size: 15px">Deberan completar el fixture hasta una hora antes del comienzo del partido. </div>
+                                                    <div class="titulo" style="display: block; border-bottom: 0px solid; font-size: 15px">Al finalizar el torneo la persona con mas puntos recibira un fantastico premio que seleccionara el Comite del Mundial</div>
 
                                                 </div>
                                             </div>

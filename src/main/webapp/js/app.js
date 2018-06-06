@@ -1,7 +1,7 @@
 var prode =(function () {
 
     function urlBase() {
-        return 'http://localhost:8090/'
+        return 'http://prode.snoopconsulting.com:8090/'
     }
 
     function urlMyRound() {

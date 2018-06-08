@@ -81,16 +81,16 @@ public class MatchServiceImpl implements MatchService {
 
         if (match.getTeamHome().getId().equals(teamHome.getId()) && match.getTeamAway().getId().equals(teamAway.getId())) {
 
-            boolean validgoalHome = goalHome != null && goalHome > 0;
-            boolean validgoalAway = goalAway != null && goalAway > 0;
+            boolean validgoalHome = goalHome != null && goalHome >= 0;
+            boolean validgoalAway = goalAway != null && goalAway >= 0;
 
             if(validgoalHome && validgoalAway){
                 match.setGoalHome(goalHome);
                 match.setGoalAway(goalAway);
 
                 boolean isDrawMatch = goalHome.equals(goalAway);
-                boolean validgoalPenaltyHome = goalPenaltyHome != null && goalPenaltyHome > 0;
-                boolean validgoalPenaltyAway = goalPenaltyAway != null && goalPenaltyAway > 0;
+                boolean validgoalPenaltyHome = goalPenaltyHome != null && goalPenaltyHome >= 0;
+                boolean validgoalPenaltyAway = goalPenaltyAway != null && goalPenaltyAway >= 0;
 
                 if(isDrawMatch && validgoalPenaltyAway && validgoalPenaltyHome){
                     match.setPenaltyGoalAway(goalPenaltyAway);
@@ -106,7 +106,7 @@ public class MatchServiceImpl implements MatchService {
                     throw new Exception("no se a podido guardar el resultado en la db");
                 }
             }else{
-                throw new Exception("los goles e y visitante no son validos");
+                throw new Exception("los goles local y visitante no son validos");
 
             }
 

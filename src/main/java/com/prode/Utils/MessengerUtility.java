@@ -41,7 +41,7 @@ public class MessengerUtility {
 
         if(match.getPenaltyGoalAway() != null && match.getPenaltyGoalHome() != null){
             message = message.concat(match.getTeamHome().getName())
-                    .concat(" (").concat(String.valueOf(match.getTeamHome())).concat(") ")
+                    .concat(" (").concat(String.valueOf(match.getGoalHome())).concat(") ")
                     .concat(" (").concat(String.valueOf(match.getPenaltyGoalHome())).concat(") ")
                     .concat("vs")
                     .concat(" (").concat(String.valueOf(match.getPenaltyGoalAway())).concat(") ")
@@ -49,14 +49,13 @@ public class MessengerUtility {
                     .concat(match.getTeamAway().getName());
         }else{
             message = message.concat(match.getTeamHome().getName())
-                    .concat(" (").concat(String.valueOf(match.getTeamHome())).concat(") ")
+                    .concat(" (").concat(String.valueOf(match.getGoalHome())).concat(") ")
                     .concat("vs")
                     .concat(" (").concat(String.valueOf(match.getGoalAway())).concat(") ")
                     .concat(match.getTeamAway().getName());
         }
 
         return message.concat(". Los snoopies Ganadores por ahora son: ")
-                .concat(generateResultRound(resultRound, match.getRound()))
                 .concat(generategeneralRound(resultRound));
 
     }
@@ -75,7 +74,7 @@ public class MessengerUtility {
                     .concat(String.valueOf(result.getRoundResult().get(round).get(1).getResult()))
                     .concat(") ")
                     .concat(result.getRoundResult().get(round).get(2).getUserName())
-                    .concat("( ")
+                    .concat("(")
                     .concat(String.valueOf(result.getRoundResult().get(round).get(2).getResult()))
                     .concat(") ");
 
@@ -87,17 +86,16 @@ public class MessengerUtility {
     public static String generategeneralRound(Result result){
 
         if(result.getGeneralResult().size() >= 3){
-            return "".concat("En la tabla general: ")
-                    .concat(result.getGeneralResult().get(0).getUserName())
-                    .concat("( ")
+            return "".concat(result.getGeneralResult().get(0).getUserName())
+                    .concat(" (")
                     .concat(String.valueOf(result.getGeneralResult().get(0).getResult()))
                     .concat(") ")
                     .concat(result.getGeneralResult().get(1).getUserName())
-                    .concat("( ")
+                    .concat(" (")
                     .concat(String.valueOf(result.getGeneralResult().get(1).getResult()))
                     .concat(") ")
                     .concat(result.getGeneralResult().get(2).getUserName())
-                    .concat("( ")
+                    .concat(" (")
                     .concat(String.valueOf(result.getGeneralResult().get(2).getResult()))
                     .concat(") ");
 

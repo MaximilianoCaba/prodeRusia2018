@@ -134,7 +134,7 @@ public class ResultServiceImpl implements ResultService {
         });
 
         userResultList
-                .sort(Comparator.comparing(UserResult::getResult).reversed());
+                .sort(Comparator.comparing(UserResult::getResult).reversed().thenComparing(UserResult::getUserName));
 
         return userResultList;
 

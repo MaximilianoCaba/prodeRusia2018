@@ -39,15 +39,15 @@ prode.ui.form.fixEdit = (function () {
                             var indexUserId = indexMatchId + 1;
                             var indexMyMatchId = indexMatchId + 2;
 
-                            var goalHome = rondaLista[indexMyMatchId].children[0].children[0].children[2].children[0].value;
-                            var goalAway = rondaLista[indexMyMatchId].children[0].children[0].children[4].children[0].value;
+                            var goalHome = rondaLista[indexMyMatchId].children[1].children[0].children[2].children[0].value;
+                            var goalAway = rondaLista[indexMyMatchId].children[1].children[0].children[4].children[0].value;
 
                             var goalPenaltyHome = "";
                             var goalPenaltyAway = "";
 
                             if (indexRounds > 2) {
-                                goalPenaltyHome = rondaLista[indexMyMatchId].children[0].children[1].children[2].children[0].value;
-                                goalPenaltyAway = rondaLista[indexMyMatchId].children[0].children[1].children[4].children[0].value;
+                                goalPenaltyHome = rondaLista[indexMyMatchId].children[1].children[1].children[2].children[0].value;
+                                goalPenaltyAway = rondaLista[indexMyMatchId].children[1].children[1].children[4].children[0].value;
                             }
 
                             var pronosticMatch = {

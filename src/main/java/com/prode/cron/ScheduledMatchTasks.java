@@ -37,10 +37,6 @@ public class ScheduledMatchTasks {
     @Scheduled(cron = "0 */30 * * * *")
     public void setInMatchGameAndSendMail() {
         System.out.println("se esta corriendo el cron setInMatchGameAndSendMail");
-
-        //si surge problemas cambiar el GTM por el local para transformar por ejemplo GTM-3 = arg
-        TimeZone.setDefault(TimeZone.getTimeZone("GMT"));
-
         MatchState matchState = new MatchState();
         matchState.setId(MatchEnum.NOT_STARTED.getIdSqlSchema());
         matchState.setState(MatchEnum.NOT_STARTED.getState());

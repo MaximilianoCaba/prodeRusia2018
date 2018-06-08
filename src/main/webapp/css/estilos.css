@@ -177,6 +177,11 @@ body{
 	
 	background-color:transparent;
 }
+
+.contenido_tab .fila.partido .celda{
+	vertical-align:middle ;
+}
+
 .contenido_tab .fila.partido input{
 	font-weight:700;
 	width:80%;
@@ -293,6 +298,7 @@ body{
 	}
 	.contenido_tab .celda.nombre{
 		font-size:16px;
+		width:100%;
 	}
 	.contenido_tab .celda.numero{
 		font-size:32px;

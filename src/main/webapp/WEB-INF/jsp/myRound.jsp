@@ -76,6 +76,12 @@
                                                                 <input type="hidden" id="matchId" value="${round.match.id}">
                                                                 <input type="hidden" id="userId" value="${round.matchUser.user.id}">
                                                                 <li id="myMatch">
+
+                                                                    <div class="row visible-xs">
+                                                                        <div class="col-xs-6 text-left">${round.match.teamHome.name}</div>
+                                                                        <div class="col-xs-6 text-right">${round.match.teamAway.name}</div>
+                                                                    </div>
+
                                                                     <div class="tabla_contenedor">
                                                                         <div class="fila partido">
                                                                             <div class="celda"><img src="${round.match.teamHome.flag}"></div>
@@ -139,7 +145,7 @@
                                                     </div>
                                                 </div>
                                             </c:forEach>
-                                            <div><button id="botonEditarFix" class="btn btn-lg btn-iniciar">Editar Fixture  <i id="spinnerEditarFix" class="fa fa-spinner fa-spin hide"></i> </button></div>
+                                            <div><button id="botonEditarFix" class="btn btn-lg btn-iniciar">Guardar mi Fixture <i id="spinnerEditarFix" class="fa fa-spinner fa-spin hide"></i> </button></div>
                                         </div>
                                     </div>
                                 </div>

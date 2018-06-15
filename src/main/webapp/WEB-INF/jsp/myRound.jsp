@@ -127,7 +127,7 @@
                                                                             </c:choose>
                                                                         </c:when>
                                                                         <c:otherwise>
-                                                                            <div class="text-center resultado_partido">Info: <b> <fmt:formatDate value="${round.match.date}" timeZone="GMT+0" pattern="yyyy-MM-dd hh:mm a" /> </b></div>
+                                                                            <div class="text-center resultado_partido">Info: <b> <fmt:formatDate value="${round.match.date}" timeZone="GMT+3" pattern="yyyy-MM-dd hh:mm a" /> </b></div>
                                                                         </c:otherwise>
                                                                     </c:choose>
                                                                 </li>

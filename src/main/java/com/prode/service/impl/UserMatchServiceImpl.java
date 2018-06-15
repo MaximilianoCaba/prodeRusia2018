@@ -50,7 +50,7 @@ public class UserMatchServiceImpl implements UserMatchService {
             if (match.getMatchState().getId() == 1) {
                 if (validgoalHome && validgoalAway) {
                     MatchUser matchUser = new MatchUser();
-                    Long matchUserId = Long.valueOf(String.valueOf(match.getId()).concat(String.valueOf(user.getId())));
+                    String matchUserId = String.valueOf(match.getId()).concat("_").concat(String.valueOf(user.getId()));
                     matchUser.setId(matchUserId);
                     matchUser.setMatch(match);
                     matchUser.setUser(user);

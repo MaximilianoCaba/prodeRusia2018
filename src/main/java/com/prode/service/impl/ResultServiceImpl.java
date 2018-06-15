@@ -172,7 +172,7 @@ public class ResultServiceImpl implements ResultService {
                 oneMatchResult.setMatch(oneMatch);
                 if (matchesUser == null){
                     matchesUser = new MatchUser();
-                    Long userMatchId = Long.valueOf(String.valueOf(user.getId()).concat(String.valueOf(oneMatch.getId())));
+                    String userMatchId = String.valueOf(user.getId()).concat("_").concat(String.valueOf(oneMatch.getId()));
                     matchesUser.setId(userMatchId);
                     matchesUser.setMatch(oneMatch);
                     matchesUser.setUser(user);

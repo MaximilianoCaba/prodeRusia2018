@@ -11,7 +11,7 @@ public class MatchUser {
 
     @Id
     @Column(name = "ID")
-    private Long id;
+    private String id;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "ID_MATCH")
@@ -36,11 +36,11 @@ public class MatchUser {
     public MatchUser() {
     }
 
-    public Long getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(String id) {
         this.id = id;
     }
 

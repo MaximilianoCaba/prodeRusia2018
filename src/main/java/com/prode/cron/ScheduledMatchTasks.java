@@ -16,7 +16,6 @@ import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
-import java.util.TimeZone;
 
 @Component
 public class ScheduledMatchTasks {
@@ -69,7 +68,7 @@ public class ScheduledMatchTasks {
     }
 
     //corre a las 5 de la tarde
-    //@Scheduled(cron = "0 0 17 * * *")
+    @Scheduled(cron = "0 0 20 * * *")
     public void sendDailyResults() throws Exception {
         System.out.println("se esta corriendo el cron sendDailyResults");
         Result result = resultService.getResultRound();

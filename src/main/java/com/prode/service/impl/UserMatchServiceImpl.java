@@ -43,6 +43,7 @@ public class UserMatchServiceImpl implements UserMatchService {
 
             boolean validgoalHome = pronosticResult.getGoalHome() != null && pronosticResult.getGoalHome() >= 0;
             boolean validgoalAway = pronosticResult.getGoalAway() != null && pronosticResult.getGoalAway() >= 0;
+            boolean isDrawMatch = pronosticResult.getGoalHome().equals(pronosticResult.getGoalAway());
             boolean validgoalPenaltyHome = pronosticResult.getGoalPenaltyHome() != null && pronosticResult.getGoalPenaltyHome() >= 0;
             boolean validgoalPenaltyAway = pronosticResult.getGoalPenaltyAway() != null && pronosticResult.getGoalPenaltyAway() >= 0;
 
@@ -56,13 +57,14 @@ public class UserMatchServiceImpl implements UserMatchService {
                     matchUser.setUser(user);
                     matchUser.setGoalAway(pronosticResult.getGoalAway());
                     matchUser.setGoalHome(pronosticResult.getGoalHome());
-                    if (match.getRound() > 3) {
-                        if (validgoalPenaltyHome && validgoalPenaltyAway) {
-                            matchUser.setPenaltyGoalAway(pronosticResult.getGoalPenaltyAway());
-                            matchUser.setPenaltyGoalHome(pronosticResult.getGoalPenaltyHome());
-                            matchUserList.add(matchUser);
-                        }
-                    } else matchUserList.add(matchUser);
+
+                    if (match.getRound() > 3 && isDrawMatch && validgoalPenaltyHome && validgoalPenaltyAway) {
+                        matchUser.setPenaltyGoalAway(pronosticResult.getGoalPenaltyAway());
+                        matchUser.setPenaltyGoalHome(pronosticResult.getGoalPenaltyHome());
+                    }
+
+                    matchUserList.add(matchUser);
+
                 }
             }
         });

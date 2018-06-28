@@ -5,11 +5,11 @@
 <script src="<c:url value="/"/>js/bootstrap/bootstrap.min.js"></script>
 <script src="<c:url value="/"/>js/lib/ie10-viewport-bug-workaround.js"></script>
 
-<script type="text/javascript" src="<c:url value="/"/>js/app.js"></script>
-<script type="text/javascript" src="<c:url value="/"/>js/ui/ui.js"></script>
-<script type="text/javascript" src="<c:url value="/"/>js/service/service.js"></script>
-<script type="text/javascript" src="<c:url value="/"/>js/service/prode.js"></script>
+<script type="text/javascript" src="<c:url value="/"/>js/app.js?v=1"></script>
+<script type="text/javascript" src="<c:url value="/"/>js/ui/ui.js?v=1"></script>
+<script type="text/javascript" src="<c:url value="/"/>js/service/service.js?v=1"></script>
+<script type="text/javascript" src="<c:url value="/"/>js/service/prode.js?v=1"></script>
 
-<script type="text/javascript" src="<c:url value="/"/>js/ui/prode/form/form.js"></script>
-<script type="text/javascript" src="<c:url value="/"/>js/ui/prode/form/fixEdit.js"></script>
+<script type="text/javascript" src="<c:url value="/"/>js/ui/prode/form/form.js?v=1"></script>
+<script type="text/javascript" src="<c:url value="/"/>js/ui/prode/form/fixEdit.js?v=1"></script>
 

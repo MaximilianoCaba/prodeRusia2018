@@ -20,11 +20,9 @@ public class DateUtility {
 
         //si surge problemas cambiar el GTM por el local para transformar por ejemplo GTM-3 = arg
         //TimeZone.setDefault(TimeZone.getTimeZone("GMT-3"));
-        System.out.println(new Date());
-        Timestamp timestamp3 = new Timestamp(date.getTime());
-        Timestamp timestampFlag = new Timestamp(new Date().getTime());
-        Timestamp timestampNow = new Timestamp(timestampFlag.getTime() -10800L);
-        long miliseconds = timestamp3.getTime() - timestampNow.getTime();
+        Timestamp timestampMatch = new Timestamp(date.getTime());
+        Timestamp timestampNow = new Timestamp(new Date().getTime() - 10800000);
+        long miliseconds = timestampMatch.getTime() - timestampNow.getTime();
 
         if(miliseconds < 3610000)
             return true;
@@ -32,4 +30,6 @@ public class DateUtility {
             return false;
 
     }
+
+
 }

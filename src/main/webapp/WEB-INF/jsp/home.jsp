@@ -38,10 +38,10 @@
                                             <div role="tabpanel" class="tab-pane active" id="ronda0">
                                                 <div class="contenido_tab">
                                                     <div class="titulo">Tabla general</div>
-                                                    <c:forEach items="${results.generalResult}" var="user">
+                                                    <c:forEach items="${results.generalResult}" var="user" varStatus="loop">
                                                         <li class="lista_usuarios">
                                                             <div class="tabla_contenedor">
-                                                                <div class="celda imagen"><img src="${user.userAvatar}" class="img-avatar"></div>
+                                                                <div class="celda imagen"><img src="${user.userAvatar}" class="img-avatar" title="Posicion: ${loop.index +1}"></div>
                                                                 <div class="celda nombre">${user.userName}</div>
                                                                 <div class="celda numero">${user.result}</div>
                                                             </div>
@@ -54,10 +54,10 @@
                                                 <div role="tabpanel" class="tab-pane" id="ronda${rounds.key}">
                                                     <div class="contenido_tab">
                                                         <div class="titulo">Ronda ${rounds.key}</div>
-                                                        <c:forEach items="${rounds.value}" var="user">
+                                                        <c:forEach items="${rounds.value}" var="user" varStatus="loop">
                                                             <li class="lista_usuarios">
                                                                 <div class="tabla_contenedor">
-                                                                    <div class="celda imagen"><img src="${user.userAvatar}" class="img-avatar"></div>
+                                                                    <div class="celda imagen"><img src="${user.userAvatar}" class="img-avatar" title="Posicion: ${loop.index +1}"></div>
                                                                     <div class="celda nombre">${user.userName}</div>
                                                                     <div class="celda numero">${user.result}</div>
                                                                 </div>

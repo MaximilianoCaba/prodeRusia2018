@@ -78,23 +78,26 @@
                                                                 <li id="myMatch">
 
                                                                     <div class="row visible-xs">
-                                                                        <div class="col-xs-6 text-left">${round.match.teamHome.name}</div>
-                                                                        <div class="col-xs-6 text-right">${round.match.teamAway.name}</div>
+                                                                        <div class="col-xs-6 text-left">${round.match.teamAway.name}</div>
+                                                                        <div class="col-xs-6 text-right">${round.match.teamHome.name}</div>
                                                                     </div>
 
                                                                     <div class="tabla_contenedor">
                                                                         <div class="fila partido">
-                                                                            <div class="celda"><img src="${round.match.teamHome.flag}"></div>
-                                                                            <div class="celda">${round.match.teamHome.name}</div>
-                                                                            <div class="celda">
-                                                                                <input <c:if test="${round.match.matchState.id != 1}"><c:out value="disabled='disabled'"/></c:if> value="${round.matchUser.goalHome}" type="number" min="0" max="99"/>
-                                                                            </div>
-                                                                            <div class="celda"> Pronostico </div>
+
+                                                                            <div class="celda"><img src="${round.match.teamAway.flag}"></div>
+                                                                            <div class="celda">${round.match.teamAway.name}</div>
+
                                                                             <div class="celda">
                                                                                 <input <c:if test="${round.match.matchState.id != 1}"><c:out value="disabled='disabled'"/></c:if> value="${round.matchUser.goalAway}" type="number" min="0" max="99"/>
                                                                             </div>
-                                                                            <div class="celda">${round.match.teamAway.name}</div>
-                                                                            <div class="celda"><img src="${round.match.teamAway.flag}"></div>
+                                                                            <div class="celda"> Pronostico </div>
+
+                                                                            <div class="celda">
+                                                                                <input <c:if test="${round.match.matchState.id != 1}"><c:out value="disabled='disabled'"/></c:if> value="${round.matchUser.goalHome}" type="number" min="0" max="99"/>
+                                                                            </div>
+                                                                            <div class="celda">${round.match.teamHome.name}</div>
+                                                                            <div class="celda"><img src="${round.match.teamHome.flag}"></div>
 
                                                                         </div>
                                                                         <c:choose>
@@ -103,11 +106,11 @@
                                                                                     <div class="celda"></div>
                                                                                     <div class="celda"></div>
                                                                                     <div class="celda">
-                                                                                        <input <c:if test="${round.match.matchState.id != 1}"><c:out value="disabled='disabled'"/></c:if> value="${round.matchUser.penaltyGoalHome}" type="number" min="0" max="99"/>
+                                                                                        <input <c:if test="${round.match.matchState.id != 1}"><c:out value="disabled='disabled'"/></c:if> value="${round.matchUser.penaltyGoalAway}" type="number" min="0" max="99"/>
                                                                                     </div>
                                                                                     <div class="celda"> Penales </div>
                                                                                     <div class="celda">
-                                                                                        <input <c:if test="${round.match.matchState.id != 1}"><c:out value="disabled='disabled'"/></c:if> value="${round.matchUser.penaltyGoalAway}" type="number" min="0" max="99"/>
+                                                                                        <input <c:if test="${round.match.matchState.id != 1}"><c:out value="disabled='disabled'"/></c:if> value="${round.matchUser.penaltyGoalHome}" type="number" min="0" max="99"/>
                                                                                     </div>
                                                                                     <div class="celda"></div>
                                                                                     <div class="celda"></div>
@@ -119,10 +122,10 @@
                                                                         <c:when test="${! empty round.match.goalAway && ! empty round.match.goalHome }">
                                                                             <c:choose>
                                                                                 <c:when test="${! empty round.match.penaltyGoalHome && ! empty round.match.penaltyGoalAway }">
-                                                                                    <div class="text-center resultado_partido"> Resultado partido: <b>${round.match.teamHome.name} ${round.match.goalHome} (${round.match.penaltyGoalHome}) - (${round.match.penaltyGoalAway}) ${round.match.teamAway.name} ${round.match.goalAway}</b></div>
+                                                                                    <div class="text-center resultado_partido"> Resultado partido: <b>${round.match.teamAway.name} ${round.match.goalAway} (${round.match.penaltyGoalAway}) - (${round.match.penaltyGoalHome}) ${round.match.teamHome.name} ${round.match.goalHome}</b></div>
                                                                                 </c:when>
                                                                                 <c:otherwise>
-                                                                                    <div class="text-center resultado_partido"> Resultado partido: <b>${round.match.teamHome.name} ${round.match.goalHome} - ${round.match.teamAway.name} ${round.match.goalAway}</b></div>
+                                                                                    <div class="text-center resultado_partido"> Resultado partido: <b>${round.match.teamAway.name} ${round.match.goalAway} - ${round.match.teamHome.name} ${round.match.goalHome}</b></div>
                                                                                 </c:otherwise>
                                                                             </c:choose>
                                                                         </c:when>

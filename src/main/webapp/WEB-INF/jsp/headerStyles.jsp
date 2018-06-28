@@ -12,7 +12,7 @@
 <!-- Bootstrap core CSS -->
 <link href="<c:url value="/"/>css/bootstrap.min.css" rel="stylesheet">
 <!-- Mis estilos -->
-<link href="<c:url value="/"/>css/estilos.css" rel="stylesheet">
+<link href="<c:url value="/"/>css/estilos.css?v=1" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css?family=Russo+One|Open+Sans:300,400,700" rel="stylesheet">
 
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">

@@ -101,7 +101,7 @@ public class MatchServiceImpl implements MatchService {
 
                 try {
                     matchRepository.save(match);
-                    messengerService.sendNotificationWorkplace(MessengerUtility.finalMatchResult(resultService.getResultRound(), match));
+                    // messengerService.sendNotificationWorkplace(MessengerUtility.finalMatchResult(resultService.getResultRound(), match));
                 } catch (Exception e) {
                     throw new Exception("no se a podido guardar el resultado en la db");
                 }

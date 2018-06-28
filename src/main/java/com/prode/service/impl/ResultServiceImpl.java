@@ -59,7 +59,6 @@ public class ResultServiceImpl implements ResultService {
 
             Map<Integer, List<UserResult>> generalRoundResult = result.getRoundResult();
 
-
             generalRoundResult.put(round, this.mapToUserResult(resultRound));
 
             result.setRoundResult(generalRoundResult);

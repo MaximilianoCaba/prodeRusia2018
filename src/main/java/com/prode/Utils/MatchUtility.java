@@ -20,13 +20,15 @@ public class MatchUtility {
         Integer myGoalAway = matchUser.getGoalAway();
         Integer goalHome = matchUser.getMatch().getGoalHome();
         Integer goalAway = matchUser.getMatch().getGoalAway();
+
         Integer goalHomePenalty = matchUser.getPenaltyGoalHome();
         Integer goalAwayPenalty = matchUser.getPenaltyGoalAway();
         Integer myGoalHomePenalty = matchUser.getMatch().getPenaltyGoalHome();
         Integer myGoalAwayPenalty = matchUser.getMatch().getPenaltyGoalAway();
 
+        boolean isvalidGeneratePenaltyPoint = goalHomePenalty != null && goalAwayPenalty != null && myGoalHomePenalty != null && myGoalAwayPenalty != null;
 
-        if (goalHomePenalty != null && goalAwayPenalty != null) {
+        if (isvalidGeneratePenaltyPoint) {
             if (goalHomePenalty.equals(myGoalHomePenalty) && goalAwayPenalty.equals(myGoalAwayPenalty))
                 points += ACIERTO_PENALES_TOTAL;
             else if (howWin(goalHomePenalty, goalAwayPenalty).equals(howWin(myGoalHomePenalty, myGoalAwayPenalty)))
